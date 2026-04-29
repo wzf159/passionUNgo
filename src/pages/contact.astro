@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { contactCards } from "@/data/site";
+---
+
+<BaseLayout title="Contact" headerMode="light">
+  <section class="section contact-intro">
+    <div class="section-heading section-heading--center">
+      <h2>Contact Us</h2>
+      <p>
+        We'd love to hear from you. Whether you're interested in collaboration, have<br />questions about our work, or simply want to connect, feel free to reach out.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--paper contact-cards-section">
+    <div class="contact-grid">
+      {contactCards.map((card) => (
+        <article class="contact-card" id={card.title.includes("Support") ? "support" : undefined}>
+          <img src={card.image} alt="" />
+          <div class="card-body">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+            <a href={`mailto:${card.email}`}>{card.email}</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

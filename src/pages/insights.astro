@@ -1,0 +1,32 @@
+---
+import Hero from "@/components/Hero.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { insights, media } from "@/data/site";
+---
+
+<BaseLayout title="Insights" headerMode="overlay">
+  <Hero
+    title="Our Insights"
+    video={media.missionVideo}
+    poster={media.missionPoster}
+    variant="insights"
+  >
+    <p class="hero-subtitle">
+      We translate public perception, emerging trends, and AI-enabled inquiry into original insights on social and environmental challenges.<br />
+      Our perspectives are grounded in observation, data, and a commitment to making complex issues more accessible.
+    </p>
+  </Hero>
+
+  {insights.map((item, index) => (
+    <article class="insight">
+      <div class="insight-inner">
+        <h2>{item.title}</h2>
+        <p class="meta">{item.subtitle}</p>
+        <p class="insight-contributors">{item.contributors}</p>
+        <a class="button insight-button" href="/contact/">Join the Survey</a>
+        <p class="insight-text">{item.text}</p>
+        <img class="insight-image insight-image--wide" src={item.image} alt="" />
+      </div>
+    </article>
+  ))}
+</BaseLayout>

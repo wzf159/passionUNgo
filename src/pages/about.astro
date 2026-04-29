@@ -1,0 +1,191 @@
+---
+import Hero from "@/components/Hero.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { media } from "@/data/site";
+
+const wixMedia = (file: string) => `https://static.wixstatic.com/media/${file}`;
+
+const pillars = [
+  ["Justice", "Climate & Social Equity"],
+  ["Sustainability", "Environment & Resources"],
+  ["Resilience", "Urban Systems & Infrastructure"],
+  ["Well-being", "Health & Flourishing"]
+];
+
+const advisorImage = wixMedia("b0f0cd_6d92140e847c44fa8a29d54c2ca5659a~mv2.jpg");
+const researchAdvisors = Array.from({ length: 10 });
+const programAdvisors = Array.from({ length: 5 });
+
+const leadership = [
+  {
+    name: "Houpu Li",
+    role: "Executive Director",
+    image: wixMedia("b0f0cd_2bba7dfe60a34714b95fc067823dd427~mv2.jpg")
+  },
+  {
+    name: "Shenghao Yan",
+    role: "Secretary",
+    image: wixMedia("b0f0cd_9e7ac16f54374d799b2c569fdffdb339~mv2.jpg")
+  },
+  {
+    name: "Lulu Liu",
+    role: "Assistant Secretary",
+    image: advisorImage
+  },
+
+  {
+    name: "Yuetong Wang",
+    role: "CFO",
+    image: wixMedia("b0f0cd_08e76305d79c42feaf9d2075d0427e86~mv2.png")
+  },
+  {
+    name: "Zhiyan Chen",
+    role: "Treasurer",
+    image: advisorImage
+  }
+];
+
+const researchTeam = [
+  {
+    name: "Houpu Li",
+    role: "CoDirector",
+    lab: "Social & Environmental Data Science Lab",
+    bio: [
+      "Ph.D. Student in Geography, University of California, Santa Barbara",
+      "Houpu Li is an urban data scientist specializing in GeoAI and spatial modeling.",
+      "He worked as a Research Associate at Harvard University, developing open-source Python tools for zoning and housing analysis.",
+      "His research focuses on using GeoAI and big data to address challenges in climate vulnerability, housing, and mobility."
+    ],
+    image: wixMedia("b0f0cd_2bba7dfe60a34714b95fc067823dd427~mv2.jpg")
+  },
+  {
+    name: "Zefan Wang",
+    role: "Director",
+    lab: "AI & Intelligence Lab",
+    bio: [
+      "B.Eng. in Computer Science and Technology, Liaoning Technical University",
+      "Zefan Wang is a Full Stack Engineer specializing in AI systems and agent-based solutions.",
+      "He develops intelligent agents and scalable AI tools for automated decision-making and real-world applications.",
+      "His work supports government-led initiatives in China, advancing the integration of AI into practical systems."
+    ],
+    image: wixMedia("b0f0cd_413b50f46f3f4fad8a41797e0e984bc6~mv2.jpg")
+  },
+
+  {
+    name: "Yanyao Cui",
+    role: "Project/Program Coordinator & Researcher",
+    lab: "",
+    bio: [
+      "Master of Landscape Architecture, University of California, Berkeley",
+      "Yanyao Cui worked as an urban designer and assistant project manager, with over seven years of experience across China and the United States.",
+      "A recipient of two 2025 scholarships from the Landscape Architecture Foundation (LAF), her work focuses on design, climate resilience, and social equity, empowering vulnerable communities to address environmental challenges."
+    ],
+    image: wixMedia("b0f0cd_e6a5708d28a04647accb35796b133640~mv2.jpg")
+  },
+
+];
+---
+
+<BaseLayout title="About" headerMode="overlay">
+  <Hero
+    title="Our Mission"
+    video={media.missionVideo}
+    poster={media.missionPoster}
+    variant="mission"
+  >
+    <div class="mission-copy">
+      <p>SENSE Institute is a registered 501(c)(3) nonprofit research organization led by young scholars and practitioners. We advance problem-driven innovation for social impact through evidence-based research, programs, and open collaboration.</p>
+      <p>Our mission is grounded in four interconnected pillars: Justice, Sustainability, Resilience, and Well-being&mdash;guiding our work to integrate theoretical foundations with data-driven methodologies to address real-world challenges.</p>
+    </div>
+
+    <div class="pillar-grid pillar-grid--hero">
+      {pillars.map(([title, text]) => (
+        <div class="pillar">
+          <strong>{title}</strong>
+          <span>{text}</span>
+        </div>
+      ))}
+    </div>
+  </Hero>
+
+  <section class="section section--paper about-people-section">
+    <div class="reveal-on-scroll" data-reveal>
+      <div class="section-heading about-advisory-heading">
+        <h2>Advisory Board</h2>
+        <p class="about-advisory-role">Research Advisors</p>
+        <p>Providing guidance on research directions and scientific development</p>
+      </div>
+    </div>
+
+    <div class="people-grid people-grid--about people-grid--advisors">
+      {researchAdvisors.map((_, index) => (
+        <figure class="advisor-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
+          <img src={advisorImage} alt="" />
+          <figcaption>
+            <strong>Name</strong>
+            <span>Title, Affiliation</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="reveal-on-scroll" data-reveal>
+      <div class="section-heading about-program-advisors-heading">
+        <h2>Program Advisors</h2>
+        <p>Supporting program design, partnerships, and real-world implementation</p>
+      </div>
+    </div>
+
+    <div class="people-grid people-grid--about people-grid--advisors">
+      {programAdvisors.map((_, index) => (
+        <figure class="advisor-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
+          <img src={advisorImage} alt="" />
+          <figcaption>
+            <strong>Name</strong>
+            <span>Title, Affiliation</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--paper about-leadership-section">
+    <div class="reveal-on-scroll" data-reveal>
+      <div class="section-heading">
+        <h2>Leadership & Operations</h2>
+      </div>
+    </div>
+
+    <div class="profile-grid profile-grid--leadership">
+      {leadership.map((person, index) => (
+        <article class="profile-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 75}ms`}>
+          <img src={person.image} alt={`${person.name} portrait`} />
+          <h3>{person.name}</h3>
+          <p>{person.role}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--paper about-research-section">
+    <div class="reveal-on-scroll" data-reveal>
+      <div class="section-heading">
+        <h2>Research Team</h2>
+      </div>
+    </div>
+
+    <div class="profile-grid profile-grid--research">
+      {researchTeam.map((person, index) => (
+        <article class="profile-card profile-card--bio reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
+          <img src={person.image} alt={`${person.name} portrait`} />
+          <h3>{person.name}</h3>
+          <div class="profile-bio">
+            <p><strong>{person.role}</strong></p>
+            {person.lab && <p><strong>{person.lab}</strong></p>}
+            {person.bio.map((line) => <p>{line}</p>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

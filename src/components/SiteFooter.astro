@@ -1,0 +1,33 @@
+---
+import { media, navItems } from "@/data/site";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const normalize = (path: string) => path.replace(/\/$/, "") || "/";
+const activePath = normalize(currentPath);
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src={media.logo} alt="" />
+      <div>
+        <strong>SENSE Institute</strong>
+        <p>Systems for Environment &<br />Societal Intelligence Institute</p>
+      </div>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      {
+        navItems.map((item) => (
+          <a class:list={{ active: normalize(item.href) === activePath }} href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <p class="copyright">© 2026 SENSE Institute. All rights reserved.</p>
+</footer>

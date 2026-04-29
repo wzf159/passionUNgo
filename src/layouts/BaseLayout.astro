@@ -1,0 +1,71 @@
+---
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  headerMode?: "overlay" | "tinted" | "light";
+}
+
+const {
+  title,
+  description = "SENSE Institute turns research, education, and collaboration into action for social impact.",
+  headerMode = "overlay"
+} = Astro.props;
+
+const pageTitle = title === "Home" ? "SENSE Institute" : `${title} | SENSE Institute`;
+const pageClass = title === "Home" ? "page-home" : "";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class={pageClass}>
+    <SiteHeader mode={headerMode} currentPath={Astro.url.pathname} />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter currentPath={Astro.url.pathname} />
+    <script is:inline>
+      (() => {
+        const revealItems = document.querySelectorAll("[data-reveal]");
+
+        if (!revealItems.length) {
+          return;
+        }
+
+        if (!("IntersectionObserver" in window)) {
+          revealItems.forEach((item) => item.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            rootMargin: "0px 0px -10% 0px",
+            threshold: 0.16
+          }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>

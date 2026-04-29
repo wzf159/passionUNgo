@@ -1,0 +1,127 @@
+---
+import Hero from "@/components/Hero.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { media } from "@/data/site";
+
+const labs = [
+  {
+    title: "Social & Environmental Data Science Lab",
+    bullets: [
+      "Urban mobility and accessibility",
+      "Spatial data analysis",
+      "Built environment and behavior",
+      "Policy-relevant data modeling"
+    ],
+    description: "Leveraging data and computational methods to understand, model, and improve urban systems and human-environment interactions.",
+    projects: [
+      "Reinforcement Learning for Adaptive Evacuation Policy Design",
+      "AI Agent-based Simulation of Human Evacuation Decisions",
+      "Remote Sensing + Mobility for Exposure Measurement",
+      "Bias in Mobility Data for Disaster Research",
+      "Measuring Evacuation Efficiency Across Policy Regimes"
+    ],
+    credit: "Houpu Li - Social & Environmental Data Science Lab",
+    quote: "Urban Data Science transforms data into insights that serve communities and shape more equitable urban futures.",
+    director: "Houpu Li",
+    directorTitle: "Lab Director",
+    image: media.houpu,
+    profileHref: "https://www.geog.ucsb.edu/people/students/houpu-li",
+    bio: [
+      "Houpu Li is an urban data scientist specializing in GeoAI, spatial modeling, and computational urban research. He was a Research Associate at Harvard University (2024-2025).",
+      "He earned a Master's degree in Regional Science from Cornell University (2022-2024) and began his Ph.D. in Geography at the University of California, Santa Barbara in Fall 2025.",
+      "His work integrates GeoAI and Python-based spatial analysis to advance equitable and resilient urban development. He contributed to the study \"The Racial Composition of Road Users, Traffic Citations, and Police Stops,\" conducted under the guidance of Professor Wenfei Xu and published in PNAS (2025)."
+    ]
+  },
+  {
+    title: "Intelligent Agents & Systems Lab",
+    bullets: [
+      "Agent-based systems and AI-driven workflows",
+      "Human-centered and deployable AI solutions",
+      "Applied machine learning for social and environmental challenges"
+    ],
+    description: "Developing and deploying AI and agent-based systems to support real-world applications in urban, environmental, and societal contexts.",
+    projects: [
+      "Intelligent Food Ingredient Analysis Platform",
+      "Global Food Safety Standards Database",
+      "AI-Driven Personalized Learning Platform for K-12",
+      "UrbanKit - A web-based toolkit for fast, data-driven urban analysis."
+    ],
+    credit: "Zefan Wang - AI & Agent Systems Lab Director",
+    quote: "AI agents transform data into adaptive intelligence, enabling intelligent decision-making across systems, applications, and everyday user experiences.",
+    director: "Zefan Wang",
+    directorTitle: "Lab Director",
+    image: media.zefan,
+    profileHref: "https://www.geog.ucsb.edu/people/students/houpu-li",
+    bio: [
+      "Zefan Wang is a Full Stack Engineer specializing in AI systems and agent-based architectures. With over 6 years of experience, he focuses on developing intelligent agents and AI-driven systems that automate complex workflows and enable adaptive, data-driven decision-making.",
+      "His work explores the integration of large language models, agent frameworks, and scalable system design to build next-generation AI applications. He has contributed to large-scale deployments where intelligent systems support real-time analysis and coordinated decision processes.",
+      "At SENSE Institute, he leads the development of AI agent systems that bridge research and application, pushing forward the role of autonomous and semi-autonomous systems in addressing complex challenges."
+    ]
+  },
+  {
+    title: "Theory & Foundations Lab",
+    bullets: [
+      "Theoretical and conceptual frameworks",
+      "Foundations of data-driven and computational research",
+      "Interdisciplinary research methodologies",
+      "Ethics and critical perspectives in technology"
+    ],
+    description: "Advancing theoretical and methodological foundations for data-driven research in urban and environmental systems, climate resilience, and social equity.",
+    projects: ["xxxx"],
+    credit: "XXXXX - Theory & Foundations Lab",
+    quote: "Urban Data Science transforms data into insights that serve communities and shape more equitable urban futures.",
+    director: "XXX",
+    directorTitle: "Lab Director",
+    image: media.theory,
+    profileHref: "https://www.geog.ucsb.edu/people/students/houpu-li",
+    bio: [
+      "Houpu Li is an urban data scientist specializing in GeoAI, spatial modeling, and computational urban research. He earned a Master's in Regional Science from Cornell University (2022-2024), worked as a Research Associate at Harvard (2024-2025), and began a Ph.D. in Geography at UC Santa Barbara in Fall 2025. His work integrates GeoAI and Python-based spatial analysis to advance equitable and resilient urban development."
+    ]
+  }
+];
+---
+
+<BaseLayout title="Labs" headerMode="overlay">
+  <Hero
+    title="Our Labs"
+    video={media.labsVideo}
+    poster={media.labsPoster}
+    variant="labs"
+    subtitle="Our labs are led by passionate young researchers and practitioners from diverse backgrounds. Together, they advance interdisciplinary research across data science, AI, and complex systems to address pressing challenges in climate, urban environments, and public well-being."
+  />
+
+  {labs.map((lab) => (
+    <section class="section lab-section">
+      <div class="lab-copy">
+        <h2>{lab.title}</h2>
+        <ul>
+          {lab.bullets.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="focus">{lab.description}</p>
+        <p><strong>Ongoing Projects:</strong></p>
+        <div class="project-list">
+          {lab.projects.map((project, index) => <p>Project {index + 1}: {project}</p>)}
+        </div>
+        <blockquote class="quote">
+          <p>{lab.quote}</p>
+        </blockquote>
+        <p class="director-credit">{lab.credit}</p>
+      </div>
+
+      <article class="director-card">
+        <img src={lab.image} alt={`${lab.director} portrait`} />
+        <div>
+          <h3>{lab.directorTitle} I {lab.director}</h3>
+          {lab.bio.map((paragraph) => <p>{paragraph}</p>)}
+          <a class="button" href={lab.profileHref} target="_blank" rel="noreferrer">Profile</a>
+        </div>
+      </article>
+
+      <div class="shape-divider" aria-hidden="true">
+        <span class="shape-divider-layer shape-divider-layer--back"></span>
+        <span class="shape-divider-layer shape-divider-layer--middle"></span>
+        <span class="shape-divider-layer shape-divider-layer--front"></span>
+      </div>
+    </section>
+  ))}
+</BaseLayout>

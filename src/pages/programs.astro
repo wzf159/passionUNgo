@@ -1,0 +1,35 @@
+---
+import Hero from "@/components/Hero.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { media, programs } from "@/data/site";
+---
+
+<BaseLayout title="Programs" headerMode="tinted">
+  <Hero
+    title="Our Programs"
+    compact
+    variant="programs"
+    subtitle="We connect research, education, and community engagement to turn knowledge into action. Through public programs, we collaborate with communities to address real-world challenges in climate, cities, and public well-being."
+  />
+
+  <section class="section section--mist" style="padding-top: 0;">
+    <div class="cards-grid cards-grid--programs">
+      {programs.map((program) => (
+        <article class="program-card">
+          <img src={program.image} alt="" />
+          <div class="card-body">
+            <h3>{program.title}</h3>
+            <p>{program.text}</p>
+            <a class="button" href="/contact/">Read More</a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="partner-strip">
+      <SectionHeading title="Program Partnerships" align="center" />
+      <img src={media.partnerLogo} alt="Program partner logo" />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+import { media, navItems } from "@/data/site";
+
+interface Props {
+  mode?: "overlay" | "tinted" | "light";
+  currentPath: string;
+}
+
+const { mode = "overlay", currentPath } = Astro.props;
+const normalize = (path: string) => path.replace(/\/$/, "") || "/";
+const activePath = normalize(currentPath);
+---
+
+<header class:list={["site-header", `site-header--${mode}`]}>
+  <a class="brand" href="/" aria-label="SENSE Institute home">
+    <img src={media.logo} alt="" />
+  </a>
+  <nav class="nav" aria-label="Primary navigation">
+    {
+      navItems.map((item) => (
+        <a class:list={{ active: normalize(item.href) === activePath }} href={item.href}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

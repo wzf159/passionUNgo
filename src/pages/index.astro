@@ -1,0 +1,56 @@
+---
+import Hero from "@/components/Hero.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { media } from "@/data/site";
+---
+
+<BaseLayout title="Home" headerMode="overlay">
+  <Hero
+    title="SENSE Institute"
+    subtitle="Turning knowledge into action for a better society."
+    video={media.homeVideo}
+    poster={media.homePoster}
+    variant="home"
+    ctaLabel="Support Our Mission"
+    ctaHref="/contact/"
+  />
+
+  <section class="section section--mist home-news">
+    <SectionHeading
+      title="News"
+      text="SENSE Institute is a nonprofit led by young scholars and practitioners, empowering society through research, education, and open collaboration on environmental sustainability, human health, and societal resilience."
+      align="center"
+    />
+
+    <article class="news-card">
+      <img src={media.news} alt="Researchers working together in a meeting room" />
+      <div>
+        <h3>Establishing a Long-Term Research Partnership with PassionULab</h3>
+        <p>We are excited to announce a long-term research collaboration with PassionULab, a research team focused on data-driven urban and social studies and practice.</p>
+        <p>As part of this partnership, we are jointly developing two open-source projects: a health management application and an AI-powered learning platform designed to adapt to individual learners' needs.</p>
+        <p>These initiatives reflect our shared commitment to leveraging technology to advance public well-being, education, and more inclusive urban futures.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="section section--mist home-partners">
+    <SectionHeading title="Our Partners" align="center" />
+    <div class="home-partner-logo">
+      <img src={media.partnerLogo} alt="Partner logo" />
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="section-heading">
+      <h2>How You Can Help</h2>
+      <p>SENSE Institute is a 501(c)(3) nonprofit advancing data-driven solutions for social impact across climate, sustainability, and public health.</p>
+      <p>Your support helps turn research into real-world impact. You can contribute by donating, collaborating, or supporting our work.</p>
+      <div class="support-actions">
+        <a class="button button--mint" href="/contact/">Donate</a>
+        <a class="button button--mint" href="/contact/">Collaboration</a>
+        <a class="button button--mint" href="/contact/">Join Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
