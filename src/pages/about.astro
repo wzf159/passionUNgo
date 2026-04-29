@@ -27,22 +27,22 @@ const leadership = [
     role: "Secretary",
     image: wixMedia("b0f0cd_9e7ac16f54374d799b2c569fdffdb339~mv2.jpg")
   },
-  {
-    name: "Lulu Liu",
-    role: "Assistant Secretary",
-    image: advisorImage
-  },
+  // {
+  //   name: "Lulu Liu",
+  //   role: "Assistant Secretary",
+  //   image: advisorImage
+  // },
 
   {
     name: "Yuetong Wang",
     role: "CFO",
     image: wixMedia("b0f0cd_08e76305d79c42feaf9d2075d0427e86~mv2.png")
   },
-  {
-    name: "Zhiyan Chen",
-    role: "Treasurer",
-    image: advisorImage
-  }
+  // {
+  //   name: "Zhiyan Chen",
+  //   role: "Treasurer",
+  //   image: advisorImage
+  // }
 ];
 
 const researchTeam = [
@@ -108,7 +108,7 @@ const researchTeam = [
     </div>
   </Hero>
 
-  <section class="section section--paper about-people-section">
+  <section class="section section--paper about-people-section" style="display: none;">
     <div class="reveal-on-scroll" data-reveal>
       <div class="section-heading about-advisory-heading">
         <h2>Advisory Board</h2>
@@ -117,7 +117,7 @@ const researchTeam = [
       </div>
     </div>
 
-    <div class="people-grid people-grid--about people-grid--advisors">
+    <div class="people-grid people-grid--about people-grid--advisors" style="display: none;">
       {researchAdvisors.map((_, index) => (
         <figure class="advisor-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
           <img src={advisorImage} alt="" />
