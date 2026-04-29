@@ -94,15 +94,15 @@ const labs = [
     <section class="section lab-section">
       <div class="lab-copy">
         <h2>{lab.title}</h2>
+        <p class="focus">{lab.description}</p>
         <ul>
           {lab.bullets.map((item) => <li>{item}</li>)}
         </ul>
-        <p class="focus">{lab.description}</p>
         <p><strong>Ongoing Projects:</strong></p>
         <div class="project-list">
           {lab.projects.map((project, index) => <p>Project {index + 1}: {project}</p>)}
         </div>
-        <blockquote class="quote">
+        <blockquote class="quote reveal-on-scroll" data-reveal>
           <p>{lab.quote}</p>
         </blockquote>
         <p class="director-credit">{lab.credit}</p>
@@ -110,6 +110,7 @@ const labs = [
 
       <article class="director-card">
         <img src={lab.image} alt={`${lab.director} portrait`} />
+        
         <div>
           <h3>{lab.directorTitle} I {lab.director}</h3>
           {lab.bio.map((paragraph) => <p>{paragraph}</p>)}

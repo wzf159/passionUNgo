@@ -1,0 +1,21 @@
+<svg width="370" height="180" viewBox="0 0 370 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="370" height="180" fill="white"/>
+  <g transform="translate(64 44)" stroke="#AAA39C" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 18H44V78H0V18Z"/>
+    <path d="M14 18V0H58V60H44"/>
+    <path d="M14 78L58 34"/>
+    <path d="M0 92H70"/>
+    <path d="M0 78L14 92"/>
+    <path d="M44 78L30 92"/>
+    <path d="M14 14H30"/>
+    <path d="M42 14H58"/>
+    <path d="M14 30H30"/>
+    <path d="M42 30H58"/>
+    <path d="M14 46H30"/>
+    <path d="M42 46H58"/>
+  </g>
+  <g fill="#AAA39C" font-family="Helvetica Neue, Arial, sans-serif" transform="translate(134 58)">
+    <text x="0" y="28" font-size="31" font-weight="400">University</text>
+    <text x="0" y="64" font-size="31" font-weight="300">Deparmity</text>
+  </g>
+</svg>
