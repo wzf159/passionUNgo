@@ -147,18 +147,22 @@ a {
 }
 
 .hero--home {
-  min-height: clamp(780px, 75svh, 870px);
+  min-height: 90svh;
 }
 
 .hero--mission {
-  min-height: 85svh;
+  min-height: 90svh;
 }
 
 .hero--labs {
-  min-height: 84svh;
+  min-height: 90svh;
 }
 
 .hero--insights {
+  min-height: 90svh !important;
+}
+
+.hero--programs {
   min-height: 90svh;
 }
 
@@ -169,6 +173,11 @@ a {
 .hero--plain {
   min-height: 640px;
   background: var(--mist);
+}
+
+/* Programs hero often renders as "plain" (no media); keep height consistent with Insights. */
+.hero--programs.hero--plain {
+  min-height: 90svh;
 }
 
 .hero-media,
@@ -245,7 +254,7 @@ a {
 
 .hero--mission .hero-content {
   width: min(var(--content), calc(100% - (var(--page-gutter) * 2)));
-  min-height: 85svh;
+  min-height: 90svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -267,9 +276,6 @@ a {
   transform: translateY(-10%);
 }
 
-.hero--programs.hero--compact {
-  min-height: 470px;
-}
 
 .hero--programs h1 {
   font-size: clamp(3rem, 7vw, 6.3rem);
@@ -285,7 +291,8 @@ a {
   width: min(1240px, 100%);
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.95);
-  font-size: clamp(1.25rem, 2vw, 1.9rem);
+  /* font-size: clamp(1.25rem, 2vw, 1.9rem); */
+  font-size: 1.2rem;
   line-height: 1.35;
 }
 
@@ -586,7 +593,7 @@ h1 {
 }
 
 .pillar-grid--hero .pillar {
-  min-height: 136px;
+  /* min-height: 136px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1383,6 +1390,13 @@ h1 {
   }
 
   .hero--insights {
+    min-height: 90svh !important;
+  }
+
+  .hero--mission,
+  .hero--labs,
+  .hero--home,
+  .hero--programs {
     min-height: 90svh;
   }
 
@@ -1441,15 +1455,23 @@ h1 {
   }
 
   .hero--labs {
-    min-height: 437px;
+    min-height: 468px;
   }
 
-  .hero--home,
-  .hero--mission {
-    min-height: 680px;
+  .hero--home {
+    min-height: 468px;
   }
 
   .hero--insights {
+    min-height: 468px !important;
+  }
+
+  .hero--mission,
+  .hero--programs {
+    min-height: 468px;
+  }
+
+  .hero--programs.hero--plain {
     min-height: 468px;
   }
 
