@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Additive AI App · Survey Report 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #f0f7f2;
+  --bg2:      #e4f0e9;
+  --surface:  #ffffff;
+  --surface2: #f6fbf8;
+  --ink:      #12261a;
+  --ink2:     #2d4a38;
+  --muted:    #6b8a76;
+  --border:   rgba(18,38,26,0.1);
+  --green:    #2d7a5f;
+  --green-lt: #6dbf9a;
+  --orange:   #e07b3a;
+  --orange-lt:#f5b07a;
+  --navy:     #1d3557;
+  --rose:     #c45060;
+  --sage:     #4a7c59;
+  --r: 12px;
+  --shadow: 0 4px 24px rgba(18,38,26,0.07);
+  --shadow-lg: 0 12px 48px rgba(18,38,26,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+  mix-blend-mode: multiply;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(240,247,242,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.nav-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--green);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink2);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 1; }
+
+.hero {
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-tags { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+.tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  color: var(--ink2);
+  background: var(--surface);
+}
+.tag.accent { border-color: var(--green); color: var(--green); }
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.hero-title .line2 { color: var(--green); }
+.hero-title .line3 { color: var(--orange); }
+.hero-desc {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 40px;
+}
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  max-width: 640px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px 20px 16px;
+}
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.stat-num.orange { color: var(--orange); }
+.stat-num.navy { color: var(--navy); }
+.stat-num.rose { color: var(--rose); }
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+.section-header { margin-bottom: 36px; }
+.section-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.section-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.chart-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media(max-width: 640px) { .chart-grid-2 { grid-template-columns: 1fr; } }
+
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.chart-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink2);
+  margin-bottom: 20px;
+}
+.chart-wrap { position: relative; width: 100%; }
+.chart-wrap.h200 { height: 200px; }
+.chart-wrap.h260 { height: 260px; }
+.chart-wrap.h320 { height: 320px; }
+.chart-wrap.h380 { height: 380px; }
+
+.hbar-list { display: flex; flex-direction: column; gap: 14px; }
+.hbar-item {}
+.hbar-label {
+  font-size: 12px;
+  color: var(--ink2);
+  margin-bottom: 5px;
+  line-height: 1.35;
+}
+.hbar-track {
+  height: 8px;
+  background: var(--bg2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.hbar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green);
+  transition: width 1s ease;
+}
+.hbar-fill.orange { background: var(--orange); }
+.hbar-fill.navy { background: var(--navy); }
+.hbar-fill.rose { background: var(--rose); }
+.hbar-meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.insight-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+}
+.insight-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: var(--r);
+  padding: 20px 22px;
+}
+.insight-card.orange { border-left-color: var(--orange); }
+.insight-card.navy { border-left-color: var(--navy); }
+.insight-lead {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.insight-lead.orange { color: var(--orange); }
+.insight-lead.navy { color: var(--navy); }
+.insight-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+.report-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 32px 28px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.report-footer strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">FOOD ADDITIVE SURVEY · 2026</span>
+    <div class="nav-links">
+      <a href="#demographics">Demographics</a>
+      <a href="#behavior">Label Behavior</a>
+      <a href="#pain-points">Pain Points</a>
+      <a href="#product">Product Needs</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-tags">
+      <span class="tag accent">SURVEY REPORT</span>
+      <span class="tag">2026 · MARCH</span>
+    </div>
+    <h1 class="hero-title">
+      Do You Know<br>
+      <span class="line2">What's in</span><br>
+      <span class="line3">Your Food?</span>
+    </h1>
+    <p class="hero-desc">
+      15 respondents shared their habits, frustrations, and expectations around food ingredient labels and AI-powered additive recognition tools. Data collected March 2026.
+    </p>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">15</div>
+        <div class="stat-label">Valid responses</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num orange">100%</div>
+        <div class="stat-label">Interested in AI scanner</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num navy">93%</div>
+        <div class="stat-label">Want risk-level labels</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num rose">80%</div>
+        <div class="stat-label">Troubled by chemical terms</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="demographics">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-num">01 — RESPONDENT PROFILE</div>
+      <div class="section-title">Who Answered This Survey?</div>
+      <div class="section-sub">Gender, age, and identity breakdown of the 15 participants.</div>
+    </div>
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="chart-card-title">Q1 · GENDER</div>
+        <div class="chart-wrap h200"><canvas id="chartGender"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Q2 · AGE GROUP</div>
+        <div class="chart-wrap h200"><canvas id="chartAge"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-card" style="margin-top:20px;">
+      <div class="chart-card-title">Q3 · IDENTITY TAGS (MULTI-SELECT)</div>
+      <div class="hbar-list">
+        <div class="hbar-item">
+          <div class="hbar-label">Health-conscious general public</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:80%"></div></div>
+          <div class="hbar-meta">12 responses · 80%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Parent / caregiver (concerned about child food safety)</div>
+          <div class="hbar-track"><div class="hbar-fill orange" style="width:33.33%"></div></div>
+          <div class="hbar-meta">5 responses · 33%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Fitness / weight management</div>
+          <div class="hbar-track"><div class="hbar-fill navy" style="width:0%"></div></div>
+          <div class="hbar-meta">0 responses · 0%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Allergy-prone / pregnant</div>
+          <div class="hbar-track"><div class="hbar-fill navy" style="width:0%"></div></div>
+          <div class="hbar-meta">0 responses · 0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="behavior">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-num">02 — LABEL READING BEHAVIOR</div>
+      <div class="section-title">How Often Do People Check Ingredient Labels?</div>
+      <div class="section-sub">Q5 & Q6 — Frequency and purpose of checking food labels.</div>
+    </div>
+    <div class="chart-grid-2">
+      <div class="chart-card">
+        <div class="chart-card-title">Q5 · LABEL CHECKING FREQUENCY</div>
+        <div class="chart-wrap h260"><canvas id="chartFreq"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Q6 · WHY CHECK LABELS? (MULTI-SELECT)</div>
+        <div class="hbar-list" style="margin-top:8px;">
+          <div class="hbar-item">
+            <div class="hbar-label">Worried about additives (preservatives, colors, flavors)</div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:66.67%"></div></div>
+            <div class="hbar-meta">10 · 67%</div>
+          </div>
+          <div class="hbar-item">
+            <div class="hbar-label">Worried about sugar / fat / calories</div>
+            <div class="hbar-track"><div class="hbar-fill orange" style="width:53.33%"></div></div>
+            <div class="hbar-meta">8 · 53%</div>
+          </div>
+          <div class="hbar-item">
+            <div class="hbar-label">Just curious, browsing</div>
+            <div class="hbar-track"><div class="hbar-fill navy" style="width:33.33%"></div></div>
+            <div class="hbar-meta">5 · 33%</div>
+          </div>
+          <div class="hbar-item">
+            <div class="hbar-label">Worried about allergens</div>
+            <div class="hbar-track"><div class="hbar-fill rose" style="width:20%"></div></div>
+            <div class="hbar-meta">3 · 20%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="pain-points">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-num">03 — PAIN POINTS</div>
+      <div class="section-title">What Makes Reading Labels So Hard?</div>
+      <div class="section-sub">Q7 — The biggest frustrations when reading ingredient lists (multi-select).</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Q7 · FRUSTRATIONS WITH INGREDIENT LABELS</div>
+      <div class="hbar-list">
+        <div class="hbar-item">
+          <div class="hbar-label">Full of chemical jargon — no idea what things are</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:80%"></div></div>
+          <div class="hbar-meta">12 · 80%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Know there are additives, but don't know if they're safe or harmful</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:73.33%"></div></div>
+          <div class="hbar-meta">11 · 73%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Want to avoid certain ingredients but can't identify them on the label</div>
+          <div class="hbar-track"><div class="hbar-fill orange" style="width:73.33%"></div></div>
+          <div class="hbar-meta">11 · 73%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Read the label but still don't know whether to buy — no clear conclusion</div>
+          <div class="hbar-track"><div class="hbar-fill navy" style="width:53.33%"></div></div>
+          <div class="hbar-meta">8 · 53%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Font too small — straining to read</div>
+          <div class="hbar-track"><div class="hbar-fill rose" style="width:33.33%"></div></div>
+          <div class="hbar-meta">5 · 33%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Waste of time checking on the shelf — too slow</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:20%; background: var(--sage);"></div></div>
+          <div class="hbar-meta">3 · 20%</div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-lead">80%</div>
+        <div class="insight-body">can't make sense of chemical terms in ingredient lists</div>
+      </div>
+      <div class="insight-card orange">
+        <div class="insight-lead orange">73%</div>
+        <div class="insight-body">know additives are there, but can't assess their safety</div>
+      </div>
+      <div class="insight-card navy">
+        <div class="insight-lead navy">53%</div>
+        <div class="insight-body">still don't know whether to buy even after reading the label</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="product">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-num">04 — PRODUCT NEEDS & EXPECTATIONS</div>
+      <div class="section-title">What Would an Ideal AI Scanner Look Like?</div>
+      <div class="section-sub">Q8–Q11 & Q14 — Interest, classification preferences, feature requests, and payment model.</div>
+    </div>
+
+    <div class="chart-grid-2" style="margin-bottom:20px;">
+      <div class="chart-card">
+        <div class="chart-card-title">Q8 · INTEREST IN AI FOOD SCANNER</div>
+        <div class="chart-wrap h200"><canvas id="chartInterest"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Q14 · PREFERRED PAYMENT MODEL</div>
+        <div class="chart-wrap h200"><canvas id="chartPayment"></canvas></div>
+      </div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom:20px;">
+      <div class="chart-card-title">Q9 · PREFERRED CLASSIFICATION STANDARDS (MULTI-SELECT)</div>
+      <div class="hbar-list">
+        <div class="hbar-item">
+          <div class="hbar-label">Risk level: green (safe) / yellow (caution) / red (high-risk)</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:93.33%"></div></div>
+          <div class="hbar-meta">14 · 93%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Functional type: preservative, colorant, sweetener, etc. — with explanation</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:86.67%"></div></div>
+          <div class="hbar-meta">13 · 87%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Plain-language name (e.g. "artificial vanilla flavor" instead of E621)</div>
+          <div class="hbar-track"><div class="hbar-fill orange" style="width:60%"></div></div>
+          <div class="hbar-meta">9 · 60%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Population tags: pregnant-safe, allergy-friendly, child-safe</div>
+          <div class="hbar-track"><div class="hbar-fill navy" style="width:66.67%"></div></div>
+          <div class="hbar-meta">10 · 67%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Source: natural extract / nature-identical / synthetic</div>
+          <div class="hbar-track"><div class="hbar-fill rose" style="width:53.33%"></div></div>
+          <div class="hbar-meta">8 · 53%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-title">Q11 · ADDITIONAL FEATURES WANTED (MULTI-SELECT)</div>
+      <div class="hbar-list">
+        <div class="hbar-item">
+          <div class="hbar-label">Find a "cleaner" alternative product in the same category</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:80%"></div></div>
+          <div class="hbar-meta">12 · 80%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Save scan history — personal consumption red/green list</div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:80%"></div></div>
+          <div class="hbar-meta">12 · 80%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Auto-calculate total sugar per bottle in common units</div>
+          <div class="hbar-track"><div class="hbar-fill orange" style="width:73.33%"></div></div>
+          <div class="hbar-meta">11 · 73%</div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-label">Identify cosmetics / skincare ingredients</div>
+          <div class="hbar-track"><div class="hbar-fill navy" style="width:66.67%"></div></div>
+          <div class="hbar-meta">10 · 67%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-lead">100%</div>
+        <div class="insight-body">of respondents are interested in an AI food additive scanner (40% very interested, 60% somewhat)</div>
+      </div>
+      <div class="insight-card orange">
+        <div class="insight-lead orange">93%</div>
+        <div class="insight-body">want a traffic-light risk classification system (green / yellow / red)</div>
+      </div>
+      <div class="insight-card navy">
+        <div class="insight-lead navy">100%</div>
+        <div class="insight-body">prefer a free model with ads over paid subscriptions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="report-footer">
+  <strong>SENSE Institute · Food Additive AI App Survey Report · March 2026</strong><br>
+  15 valid responses · Lead Researcher: Zhiyan Chen · senseinstitute.org
+</div>
+
+<script>
+const green    = '#2d7a5f';
+const greenLt  = '#6dbf9a';
+const orange   = '#e07b3a';
+const orangeLt = '#f5b07a';
+const navy     = '#1d3557';
+const rose     = '#c45060';
+const bg2      = '#e4f0e9';
+const muted    = '#6b8a76';
+
+Chart.defaults.font.family = 'Inter, sans-serif';
+Chart.defaults.color = '#6b8a76';
+
+new Chart(document.getElementById('chartGender'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Female', 'Male'],
+    datasets: [{ data: [9, 6], backgroundColor: [green, orange], borderWidth: 0, hoverOffset: 6 }]
+  },
+  options: {
+    cutout: '62%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, font: { size: 12 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/15*100)}%)` } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartAge'), {
+  type: 'bar',
+  data: {
+    labels: ['<18', '18–25', '26–35', '36–50', '50+'],
+    datasets: [{
+      data: [0, 2, 13, 0, 0],
+      backgroundColor: [bg2, greenLt, green, bg2, bg2],
+      borderRadius: 6, borderSkipped: false
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, border: { display: false } },
+      y: { grid: { color: 'rgba(18,38,26,0.06)' }, border: { display: false }, ticks: { stepSize: 5 } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartFreq'), {
+  type: 'bar',
+  data: {
+    labels: ['Always check', 'Sometimes\n(esp. for kids)', 'Rarely\n(can\'t understand)', 'Only calories\nnot additives'],
+    datasets: [{
+      data: [4, 6, 1, 4],
+      backgroundColor: [green, greenLt, orange, navy],
+      borderRadius: 6, borderSkipped: false
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10 } } },
+      y: { grid: { color: 'rgba(18,38,26,0.06)' }, border: { display: false }, ticks: { stepSize: 2 } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartInterest'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Very interested', 'Somewhat interested', 'Not interested'],
+    datasets: [{ data: [6, 9, 0], backgroundColor: [green, greenLt, bg2], borderWidth: 0, hoverOffset: 6 }]
+  },
+  options: {
+    cutout: '62%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 14, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/15*100)}%)` } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartPayment'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Free with ads', 'In-app purchase', 'Subscription', 'Pay-per-use'],
+    datasets: [{ data: [15, 4, 1, 1], backgroundColor: [green, orange, navy, rose], borderWidth: 0, hoverOffset: 6 }]
+  },
+  options: {
+    cutout: '62%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 14, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/15*100)}%)` } }
+    }
+  }
+});
+</script>
+</body>
+</html>
