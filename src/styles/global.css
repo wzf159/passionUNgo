@@ -726,6 +726,22 @@ h1 {
   font-weight: 500;
 }
 
+.advisor-card figcaption p {
+  margin: 6px 0 0;
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.advisor-card figcaption .advisor-description {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.advisor-card figcaption .advisor-affiliation {
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .about-leadership-section,
 .about-research-section {
   padding-top: clamp(70px, 7vw, 112px);
@@ -1569,5 +1585,272 @@ h1 {
     clip-path: none;
     animation: none;
     transition: none;
+  }
+}
+
+.about-section {
+  padding: clamp(60px, 8vw, 100px) var(--page-gutter);
+  border-bottom: 1px solid #ffffff;
+}
+
+.about-section--advisors {
+  background-color: #b8c5c5;
+}
+
+.about-section--leadership {
+  background-color: #b8c5c5;
+}
+
+.about-section--research {
+  background-color: #b8c5c5;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.section-heading h2 {
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 300;
+  color:#366177;
+  margin-bottom: 12px;
+}
+
+.about-section-heading {
+  text-align: left;
+  max-width: 1400px;
+  margin: 0 auto clamp(20px, 6vw, 30px);
+}
+
+.about-note {
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: #0c3d50;
+  opacity: 0.8;
+}
+
+.advisors-grid {
+  /* 使用 CSS Grid 布局 */
+  display: grid;
+  /* 创建4列，每列最小宽度为0，最大占用可用空间的1/4 */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* 设置网格间距，响应式：最小5px，首选2vw视口宽度，最大6px */
+  gap: clamp(5px, 2vw, 26px); /* 间距大小 参数：5px 最小值，2vw 视口宽度百分比，6px 最大值 */
+  /* 限制最大宽度为1400px */
+  max-width: 1400px;
+  /* 水平居中 */
+  margin: 0 auto;
+}
+
+.advisor-card {
+  background: #7C95A1;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;  /* 新增：让网格填满父容器可用宽度 */
+}
+
+.advisor-card img {
+  width: 100%;
+  aspect-ratio: 4/4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.advisor-content {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.advisor-content h3 {
+  font-size: 1.8rem;
+  font-weight: 00;
+  color: #ffffff;
+  margin-bottom: 4px;
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.advisor-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #366177;
+  margin-bottom: 4px;
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.advisor-description {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 400;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.advisor-affiliation {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.profile-button {
+  background-color: #0c3d50;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  text-align: center;
+  display: block;
+  width: 33.33%;
+  margin: 0;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.profile-button::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.profile-button:hover {
+  background-color: #1a5a70;
+}
+
+.profile-button:hover::after {
+  width: 60%;
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.leadership-card {
+  text-align: center;
+}
+
+.leadership-card img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center top;
+  background: #e8e8e8;
+}
+
+.leadership-card h3 {
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-weight: 600;
+  color: #0c3d50;
+  margin: clamp(8px, 1vw, 12px) 0 4px;
+}
+
+.leadership-card p {
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  color: rgba(12, 61, 80, 0.8);
+  margin: 0;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.research-card {
+  text-align: center;
+}
+
+.research-card img {
+  width: 100%;
+  aspect-ratio: 4/6;
+  object-fit: cover;
+  object-position: center top;
+  background: #e8e8e8;
+}
+
+.research-card h3 {
+  font-size: clamp(1rem, 1vw, 1.9rem);
+  font-weight: 600;
+  color: #366177;
+  margin: clamp(8px, 1vw, 12px) 0 4px;
+  white-space: nowrap;
+  overflow: visible;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.research-role {
+  color: #164056;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  font-weight: 600;
+  margin-bottom: 8px;
+  height: 50px;
+}
+
+.research-bio {
+  font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+  color: #4B7184;
+  line-height: 1.4;
+  text-align: left;
+}
+
+@media (max-width: 1200px) {
+  .research-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .advisors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .leadership-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .research-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .leadership-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .research-grid {
+    grid-template-columns: 1fr;
   }
 }

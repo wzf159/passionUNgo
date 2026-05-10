@@ -3,86 +3,178 @@ import Hero from "@/components/Hero.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { media } from "@/data/site";
 
-const wixMedia = (file: string) => `https://static.wixstatic.com/media/${file}`;
+const advisorImage = "/images/ai-generated-IMAGE.jpg";
+const placeholderImage = "/images/Soft Gradient Background.jpg";
+const placeholderImage2 = "/images/Orange Fluid Shapes.jpg";
 
-const pillars = [
-  ["Justice", "Climate & Social Equity"],
-  ["Sustainability", "Environment & Resources"],
-  ["Resilience", "Urban Systems & Infrastructure"],
-  ["Well-being", "Health & Flourishing"]
+const advisors = [
+  {
+    name: "Álvaro Cano",
+    title: "Research Advisor",
+    description: "Multidisciplinary researcher and public policy developer.",
+    affiliation: "Peru's Ministry of Energy and Mines, the British Columbia Government",
+    image: "/images/image.png"
+  },
+  {
+    name: "Damien Raffa",
+    title: "Program Advisor",
+    description: "Senior Park Experience & Partnerships Specialist.",
+    affiliation: "Presidio Trust",
+    image: "/images/Weixin Image_20260508162859.png"
+  },
+  {
+    name: "Erika Bingham",
+    title: "Program Advisor",
+    description: "Lead Toddler Teacher",
+    affiliation: "UC Santa Barbara Children's Center",
+    image: "/images/Bingham-Erika.jpg"
+  },
+  {
+    name: "Feng Shen",
+    title: "Research Advisor",
+    description: "Research Director",
+    affiliation: "Agro-Environmental Protection Institute, Ministry of Agriculture and Rural Affairs of China",
+    image: placeholderImage
+  },
+  {
+    name: "Frances Kim",
+    title: "Program Advisor",
+    description: "Elementary Educator",
+    affiliation: "San Leandro Unified School District",
+    image: placeholderImage
+  },
+  {
+    name: "Guangyin Jin",
+    title: "Research Advisor",
+    description: "Researcher and Visiting Professor of Chang'an University",
+    affiliation: "Chang'an University",
+    image: "/images/5e2c373c967f69541ed550f26fc061a_edited.jpg"
+  },
+  {
+    name: "Jing Guo",
+    title: "Research Advisor",
+    description: "Assistant Professor at Shenzhen University, Research Director for Governance of Mega-Cities.",
+    affiliation: "Shenzhen University",
+    image: "/images/4805afba4f71d41d9925ce8f9d3a33f_edited.jpg"
+  },
+  {
+    name: "Lisa Howard",
+    title: "Program Advisor",
+    description: "Co-Founder, Principal",
+    affiliation: "Bay Tree Design",
+    image: "/images/1741824266786.jpg"
+  }
 ];
-
-const advisorImage = wixMedia("b0f0cd_6d92140e847c44fa8a29d54c2ca5659a~mv2.jpg");
-const researchAdvisors = Array.from({ length: 10 });
-const programAdvisors = Array.from({ length: 5 });
 
 const leadership = [
   {
     name: "Houpu Li",
     role: "Executive Director",
-    image: wixMedia("b0f0cd_2bba7dfe60a34714b95fc067823dd427~mv2.jpg")
+    image: "/images/houpu_edited_edited_edited_edited_edited.jpg"
+  },
+    {
+    name: "Yuetong Wang",
+    role: "Assistant Secretary",
+    image: placeholderImage
   },
   {
     name: "Shenghao Yan",
     role: "Secretary",
-    image: wixMedia("b0f0cd_9e7ac16f54374d799b2c569fdffdb339~mv2.jpg")
+    image: "/images/shenghao.jpg"
   },
-  // {
-  //   name: "Lulu Liu",
-  //   role: "Assistant Secretary",
-  //   image: advisorImage
-  // },
+  {
+    name: "Zhiyan Chen",
+    role: "Treasurer",
+    image: "/images/zhiyan.jpg"
+  },
 
   {
-    name: "Yuetong Wang",
-    role: "CFO",
-    image: wixMedia("b0f0cd_08e76305d79c42feaf9d2075d0427e86~mv2.png")
+    name: "Lulu Liu",
+    role: "Assistant Secretary",
+    image: placeholderImage
   },
-  // {
-  //   name: "Zhiyan Chen",
-  //   role: "Treasurer",
-  //   image: advisorImage
-  // }
+  {
+    name: "Maria-Paz Villanueva",
+    role: "Assistant Secretary",
+    image: placeholderImage
+  }
 ];
 
 const researchTeam = [
+ 
   {
     name: "Houpu Li",
-    role: "CoDirector",
-    lab: "Social & Environmental Data Science Lab",
-    bio: [
-      "Ph.D. Student in Geography, University of California, Santa Barbara",
-      "Houpu Li is an urban data scientist specializing in GeoAI and spatial modeling.",
-      "He worked as a Research Associate at Harvard University, developing open-source Python tools for zoning and housing analysis.",
-      "His research focuses on using GeoAI and big data to address challenges in climate vulnerability, housing, and mobility."
-    ],
-    image: wixMedia("b0f0cd_2bba7dfe60a34714b95fc067823dd427~mv2.jpg")
+    role: "Social & Environmental Data Science Lab CoDirector",
+    bio: "Ph.D. Student in Geography, University of California, Santa Barbara. Houpu Li is an urban data scientist specializing in GeoAI and spatial modeling. He worked as a Research Associate at Harvard University, developing open-source Python tools for zoning and housing analysis. His research focuses on using GeoAI and big data to address challenges in climate vulnerability, housing, and mobility.",
+    image: "/images/houpu_edited_edited_edited_edited_edited.jpg"
+  },
+    {
+    name: "Yanyao Cui",
+    role: "Project/Program Coordinator & Researcher",
+    bio: "Yanyao Cui worked as an urban designer and assistant project manager, with over seven years of experience across China and the United States. She received her master's degree in Landscape Architecture from UC Berkeley. She is a recipient of two 2025 scholarships from the Landscape Architecture Foundation (LAF), her work focuses on design, climate resilience, and social equity, empowering vulnerable communities to address environmental challenges.",
+    image: "/images/yanyaocui (1)_edited.jpg"
+  },
+   {
+    name: "Wenzheng Li",
+    role: "Social & Environmental Data Science Lab Director",
+    bio: "Ph.D. Student in Geography, University of California, Santa Barbara. Wenzheng Li applies AI, machine learning, and advanced climate modeling to study climate variability and change. Passionate about real-world impact, his core focus is S2S forecasting and downscaling for wildfires, though he actively welcomes interdisciplinary collaborations across other climate-sensitive sectors.",
+    image: "/images/wenzheng_edited_edited_edited.jpg"
   },
   {
     name: "Zefan Wang",
-    role: "Director",
-    lab: "AI & Intelligence Lab",
-    bio: [
-      "B.Eng. in Computer Science and Technology, Liaoning Technical University",
-      "Zefan Wang is a Full Stack Engineer specializing in AI systems and agent-based solutions.",
-      "He develops intelligent agents and scalable AI tools for automated decision-making and real-world applications.",
-      "His work supports government-led initiatives in China, advancing the integration of AI into practical systems."
-    ],
-    image: wixMedia("b0f0cd_413b50f46f3f4fad8a41797e0e984bc6~mv2.jpg")
+    role: "AI & Intelligence Lab Director",
+    bio: "Zefan Wang is a Full Stack Engineer specializing in AI systems and agent-based solutions. He develops intelligent agents and scalable AI tools for automated decision-making and real-world applications. His work supports government-led initiatives in China, advancing the integration of AI into practical systems.",
+    image: "/images/96cd5d86140428c5a1e681c2d1aec41_edited.jpg"
   },
 
   {
-    name: "Yanyao Cui",
-    role: "Project/Program Coordinator & Researcher",
-    lab: "",
-    bio: [
-      "Master of Landscape Architecture, University of California, Berkeley",
-      "Yanyao Cui worked as an urban designer and assistant project manager, with over seven years of experience across China and the United States.",
-      "A recipient of two 2025 scholarships from the Landscape Architecture Foundation (LAF), her work focuses on design, climate resilience, and social equity, empowering vulnerable communities to address environmental challenges."
-    ],
-    image: wixMedia("b0f0cd_e6a5708d28a04647accb35796b133640~mv2.jpg")
+    name: "Alejandro Niño Chaparro",
+    role: "Researcher",
+    bio: "Alejandro Niño Chaparro is an incoming Geography PhD Student at UC Santa Barbara. He applies AI, machine learning, and advanced climate modeling to study climate variability and change. Passionate about real-world impact, his core focus is S2S forecasting and downscaling for wildfires, though he actively welcomes interdisciplinary collaborations across other climate-sensitive sectors.",
+    image: "/images/27197.jpg"
   },
-
+  {
+    name: "Will Hadley",
+    role: "Researcher",
+    bio: "Will Hadley is a graduate student in the Department of Geography at the University of California, Santa Barbara. After graduating from the University of Arkansas in 2022, Will has contributed to Climate research at both the National Oceanic and Atmospheric Administration and the National Park Service.",
+    image: "/images/IMG_0648_edited_edited.jpg"
+  },
+  {
+    name: "Yudong Sun",
+    role: "Researcher",
+    bio: "",
+    image: "/images/yudong_edited_edited.jpg"
+  },
+  {
+    name: "Kamryn Wyatt",
+    role: "Researcher & Developer",
+    bio: "",
+    image: "/images/Natural Light Portrait_edited_edited_edited.jpg"
+  },
+  {
+    name: "Weibo Mi",
+    role: "Researcher",
+    bio: "",
+    image: "/images/weibo_edited.jpg"
+  },
+  {
+    name: "Shiyun Wen",
+    role: "Researcher & Developer",
+    bio: "",
+    image: placeholderImage2
+  },
+  {
+    name: "Yifan Shen",
+    role: "Researcher",
+    bio: "",
+    image: placeholderImage
+  },
+  {
+    name: "xxx",
+    role: "Researcher",
+    bio: "",
+    image: placeholderImage
+  }
 ];
 ---
 
@@ -97,68 +189,40 @@ const researchTeam = [
       <p>SENSE Institute is a registered 501(c)(3) nonprofit research organization led by young scholars and practitioners. We advance problem-driven innovation for social impact through evidence-based research, programs, and open collaboration.</p>
       <p>Our mission is grounded in four interconnected pillars: Justice, Sustainability, Resilience, and Well-being&mdash;guiding our work to integrate theoretical foundations with data-driven methodologies to address real-world challenges.</p>
     </div>
-
-    <div class="pillar-grid pillar-grid--hero">
-      {pillars.map(([title, text]) => (
-        <div class="pillar">
-          <strong>{title}</strong>
-          <span>{text}</span>
-        </div>
-      ))}
-    </div>
   </Hero>
 
-  <section class="section section--paper about-people-section" style="display: none;">
-    <div class="reveal-on-scroll" data-reveal>
-      <div class="section-heading about-advisory-heading">
-        <h2>Advisory Board</h2>
-        <p class="about-advisory-role">Research Advisors</p>
-        <p>Providing guidance on research directions and scientific development</p>
-      </div>
+  <section class="about-section about-section--advisors">
+    <div class="section-heading about-section-heading">
+      <h2>Research & Program Advisors</h2>
+      <p class="about-note">(Names listed in alphabetical order)</p>
     </div>
 
-    <div class="people-grid people-grid--about people-grid--advisors" style="display: none;">
-      {researchAdvisors.map((_, index) => (
-        <figure class="advisor-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
-          <img src={advisorImage} alt="" />
-          <figcaption>
-            <strong>Name</strong>
-            <span>Title, Affiliation</span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-
-    <div class="reveal-on-scroll" data-reveal>
-      <div class="section-heading about-program-advisors-heading">
-        <h2>Program Advisors</h2>
-        <p>Supporting program design, partnerships, and real-world implementation</p>
-      </div>
-    </div>
-
-    <div class="people-grid people-grid--about people-grid--advisors">
-      {programAdvisors.map((_, index) => (
-        <figure class="advisor-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
-          <img src={advisorImage} alt="" />
-          <figcaption>
-            <strong>Name</strong>
-            <span>Title, Affiliation</span>
-          </figcaption>
-        </figure>
+    <div class="advisors-grid">
+      {advisors.map((advisor, index) => (
+        <article key={index} class="advisor-card">
+          <img src={advisor.image} alt={`${advisor.name} portrait`} />
+          <div class="advisor-content">
+            <div class="advisor-text">
+              <h3>{advisor.name}</h3>
+              <p class="advisor-title">{advisor.title}</p>
+              <p class="advisor-description">{advisor.description}</p>
+              <p class="advisor-affiliation">{advisor.affiliation}</p>
+            </div>
+            <button class="profile-button">Profile</button>
+          </div>
+        </article>
       ))}
     </div>
   </section>
 
-  <section class="section section--paper about-leadership-section">
-    <div class="reveal-on-scroll" data-reveal>
-      <div class="section-heading">
-        <h2>Leadership & Operations</h2>
-      </div>
+  <section class="about-section about-section--leadership">
+    <div class="section-heading about-section-heading">
+      <h2>Leadership & Operations</h2>
     </div>
 
-    <div class="profile-grid profile-grid--leadership">
+    <div class="leadership-grid">
       {leadership.map((person, index) => (
-        <article class="profile-card reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 75}ms`}>
+        <article key={index} class="leadership-card">
           <img src={person.image} alt={`${person.name} portrait`} />
           <h3>{person.name}</h3>
           <p>{person.role}</p>
@@ -167,23 +231,18 @@ const researchTeam = [
     </div>
   </section>
 
-  <section class="section section--paper about-research-section">
-    <div class="reveal-on-scroll" data-reveal>
-      <div class="section-heading">
-        <h2>Research Team</h2>
-      </div>
+  <section class="about-section about-section--research">
+    <div class="section-heading about-section-heading">
+      <h2>Research & Technology Team</h2>
     </div>
 
-    <div class="profile-grid profile-grid--research">
+    <div class="research-grid">
       {researchTeam.map((person, index) => (
-        <article class="profile-card profile-card--bio reveal-on-scroll" data-reveal style={`--reveal-delay: ${index * 55}ms`}>
+        <article key={index} class="research-card">
           <img src={person.image} alt={`${person.name} portrait`} />
           <h3>{person.name}</h3>
-          <div class="profile-bio">
-            <p><strong>{person.role}</strong></p>
-            {person.lab && <p><strong>{person.lab}</strong></p>}
-            {person.bio.map((line) => <p>{line}</p>)}
-          </div>
+          <p class="research-role">{person.role}</p>
+          {person.bio && <p class="research-bio">{person.bio}</p>}
         </article>
       ))}
     </div>
