@@ -17,6 +17,7 @@ const {
 
 const pageTitle = title === "Home" ? "SENSE Institute" : `${title} | SENSE Institute`;
 const pageClass = title === "Home" ? "page-home" : "";
+const pageName = title.toLowerCase();
 ---
 
 <!doctype html>
@@ -28,7 +29,7 @@ const pageClass = title === "Home" ? "page-home" : "";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{pageTitle}</title>
   </head>
-  <body class={pageClass}>
+  <body class:list={[pageClass, `page-${pageName}`]}>
     <SiteHeader mode={headerMode} currentPath={Astro.url.pathname} />
     <main>
       <slot />

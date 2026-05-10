@@ -172,12 +172,30 @@ a {
 
 .hero--plain {
   min-height: 640px;
-  background: var(--mist);
+  background: var(--mist-light);
+   color: #023F56C7;
+}
+
+.hero--plain .hero-subtitle {
+  color: rgba(12, 61, 80, 0.78);
+}
+
+.hero--plain .nav a {
+  color: var(--ink);
+}
+
+.page-contact .site-header--overlay {
+  color: var(--ink);
+}
+
+.page-contact .site-header--overlay .nav a {
+  color: var(--ink);
 }
 
 /* Programs hero often renders as "plain" (no media); keep height consistent with Insights. */
 .hero--programs.hero--plain {
   min-height: 90svh;
+  background: var(--mist);
 }
 
 .hero-media,
@@ -265,6 +283,10 @@ a {
 
 .hero--insights .hero-content {
   width: min(var(--content), calc(100% - (var(--page-gutter) * 1.4)));
+}
+
+.hero--insights h1 {
+  font-weight: 600;
 }
 
 .hero--insights .hero-subtitle {

@@ -16,7 +16,7 @@ export const media = {
   labsPoster: "https://static.wixstatic.com/media/b0f0cd_9b83e2530b6b495184999e8a8900fc96f000.jpg",
   labsVideo: "https://video.wixstatic.com/video/b0f0cd_9b83e2530b6b495184999e8a8900fc96/720p/mp4/file.mp4",
   news: "https://static.wixstatic.com/media/b0f0cd_ae6e6984bfd84f38b80504150168240f~mv2.png",
-  partnerLogo: "/images/partner-logo.svg",
+  partnerLogo: "/images/partner-logo1.png",
   advisor: "https://static.wixstatic.com/media/b0f0cd_6d92140e847c44fa8a29d54c2ca5659a~mv2.jpg",
   guangyin: "https://static.wixstatic.com/media/b0f0cd_25adb509b8f0497f9e442aae6de92818~mv2.jpg",
   houpu: "https://static.wixstatic.com/media/b0f0cd_b76f761efbcb4f9fad5261c28b5d5014~mv2.jpg",
