@@ -8,28 +8,28 @@ export const navItems = [
 ];
 
 export const media = {
-  logo: "https://static.wixstatic.com/media/b0f0cd_320a3c0aa304417cbf1258224f2a4357~mv2.png",
-  homePoster: "https://static.wixstatic.com/media/b0f0cd_b346518a4a1044eb9e51a85e1d094be1f000.jpg",
-  homeVideo: "https://video.wixstatic.com/video/b0f0cd_b346518a4a1044eb9e51a85e1d094be1/720p/mp4/file.mp4",
-  missionPoster: "https://static.wixstatic.com/media/b0f0cd_165da95fa31a461fab4812a0d7f1a3d3f000.jpg",
-  missionVideo: "https://video.wixstatic.com/video/b0f0cd_165da95fa31a461fab4812a0d7f1a3d3/720p/mp4/file.mp4",
-  labsPoster: "https://static.wixstatic.com/media/b0f0cd_9b83e2530b6b495184999e8a8900fc96f000.jpg",
-  labsVideo: "https://video.wixstatic.com/video/b0f0cd_9b83e2530b6b495184999e8a8900fc96/720p/mp4/file.mp4",
-  news: "https://static.wixstatic.com/media/b0f0cd_ae6e6984bfd84f38b80504150168240f~mv2.png",
+  logo: "/images/logo.png",
+  homePoster: "/images/hero/home-poster.jpg",
+  homeVideo: "/videos/home.mp4",
+  missionPoster: "/images/hero/mission-poster.jpg",
+  missionVideo: "/videos/mission.mp4",
+  labsPoster: "/images/hero/labs-poster.jpg",
+  labsVideo: "/videos/labs.mp4",
+  news: "/images/news.png",
   partnerLogo: "/images/partner-logo1.png",
-  advisor: "https://static.wixstatic.com/media/b0f0cd_6d92140e847c44fa8a29d54c2ca5659a~mv2.jpg",
-  guangyin: "https://static.wixstatic.com/media/b0f0cd_25adb509b8f0497f9e442aae6de92818~mv2.jpg",
-  houpu: "https://static.wixstatic.com/media/b0f0cd_b76f761efbcb4f9fad5261c28b5d5014~mv2.jpg",
-  zefan: "https://static.wixstatic.com/media/b0f0cd_413b50f46f3f4fad8a41797e0e984bc6~mv2.jpg",
-  theory: "https://static.wixstatic.com/media/11062b_19bdd1b0a32347649f3ab4484e2e246f~mv2.jpg",
-  talks: "https://static.wixstatic.com/media/11062b_6b36a599be634ccda9de42848c8c6dd8~mv2.jpg",
-  education: "https://static.wixstatic.com/media/11062b_fb30077eae5943bb9d4880293c525a17~mv2.jpg",
-  community: "https://static.wixstatic.com/media/b0f0cd_186669379305436ea5d9dbfdf5fc8bc1~mv2.jpg",
+  advisor: "/images/advisor.jpg",
+  guangyin: "/images/labs/guangyin.jpg",
+  houpu: "/images/labs/houpu.jpg",
+  zefan: "/images/labs/zefan.jpg",
+  theory: "/images/labs/theory.jpg",
+  talks: "/images/programs/talks.jpg",
+  education: "/images/programs/education.jpg",
+  community: "/images/programs/community.jpg",
   llmSurvey: "/images/llm-survey-report.png",
-  foodSurvey: "https://static.wixstatic.com/media/b0f0cd_c8764f96f1d44e859d2171969b64cbf6~mv2.jpg",
-  contactCollab: "https://static.wixstatic.com/media/556afc712f9e4d8aae4b2a39ad38c9bf.jpg",
-  contactTeam: "https://static.wixstatic.com/media/b0f0cd_69a90b48c9cb44dd8e671de89cbd08ca~mv2.jpg",
-  contactSupport: "https://static.wixstatic.com/media/b0f0cd_2e228e9704854dd4bce45f82c308ef66~mv2.png"
+  foodSurvey: "/images/insights/food-survey.jpg",
+  contactCollab: "/images/contact/collab.jpg",
+  contactTeam: "/images/contact/team.jpg",
+  contactSupport: "/images/contact/support.png"
 };
 
 export const labProfiles = [
