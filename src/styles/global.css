@@ -555,8 +555,9 @@ h1 {
 }
 
 .home-partner-logo img {
-  width: 170px;
-  background: var(--white);
+  width: 60px;
+  /* background: var(--white); */
+   margin: 0 auto;
   /* padding: 22px; */
 }
 
@@ -1114,22 +1115,18 @@ h1 {
 }
 
 .partner-strip {
-  width: min(var(--content), 100%);
+  max-width: var(--content);
   margin: 120px auto 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
+  padding-left: max(var(--page-gutter), calc((100vw - var(--content)) / 2));
 }
 
 .partner-strip .section-heading {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .partner-strip img {
-  width: 170px;
-  background: var(--white);
-  /* padding: 22px; */
+  width: 63px;
 }
 
 .insight {
