@@ -1594,15 +1594,15 @@ h1 {
 }
 
 .about-section--advisors {
-  background-color: #b8c5c5;
+  background-color: #C1C9CA;
 }
 
 .about-section--leadership {
-  background-color: #b8c5c5;
+  background-color: #7C95A1;
 }
 
 .about-section--research {
-  background-color: #b8c5c5;
+  background-color: #7C95A1;
 }
 
 .section-heading {
@@ -1768,13 +1768,13 @@ h1 {
 .leadership-card h3 {
   font-size: clamp(0.85rem, 1vw, 1rem);
   font-weight: 600;
-  color: #0c3d50;
+  color: #366177;
   margin: clamp(8px, 1vw, 12px) 0 4px;
 }
 
 .leadership-card p {
   font-size: clamp(0.8rem, 0.9vw, 0.9rem);
-  color: rgba(12, 61, 80, 0.8);
+  color: #366177;
   margin: 0;
 }
 
