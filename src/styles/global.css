@@ -1663,6 +1663,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  line-height: 1.4;
 }
 
 .advisor-content h3 {
@@ -1684,13 +1685,16 @@ h1 {
 }
 
 .advisor-description {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #ffffff;
   font-weight: 400;
   margin-bottom: 10px;
   line-height: 1.4;
   font-family: sans-serif;
   text-align: left;
+  min-height: 3em;
+  display: flex;
+  align-items: flex-start;
 }
 
 .advisor-affiliation {
@@ -1705,17 +1709,20 @@ h1 {
   background-color: #0c3d50;
   color: #ffffff;
   border: none;
-  padding: 8px 20px;
+  padding: 8px 8px;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   font-family: sans-serif;
   text-align: center;
-  display: block;
-  width: 33.33%;
+  display: inline-block;
+  width: auto;
+  width: 40%;
+  min-width: 120px;
   margin: 0;
   transition: background-color 0.3s ease;
   position: relative;
+  line-height: 1.4;
 }
 
 .profile-button::after {
