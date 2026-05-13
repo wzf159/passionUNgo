@@ -14,13 +14,15 @@ const labs = [
     ],
     description: "Leveraging data and computational methods to understand, model, and improve urban systems and human-environment interactions.",
     projects: [
-      "Reinforcement Learning for Adaptive Evacuation Policy Design",
-      "AI Agent-based Simulation of Human Evacuation Decisions",
-      "Remote Sensing + Mobility for Exposure Measurement",
-      "Bias in Mobility Data for Disaster Research",
-      "Measuring Evacuation Efficiency Across Policy Regimes"
+      "Disaster-Driven Population Relocation and Urban Development",
+      "Planning, Buyout Policies, and Evacuation Behavior",
+      "Mandatory Evacuation Policies and Hurricane Evacuation Behavior",
+      "Post-Disaster Recovery Policy and Population Return Dynamics",
+      "Short-Term Evacuation Behavior and Human Mobility During Flood Events",
+      "Long-Term Population Migration and Spatial Reorganization After Flood Disasters",
+      "Child-Centered Urban Cooling and Heat Adaptation Simulation"
     ],
-    credit: "Houpu Li - Social & Environmental Data Science Lab",
+    credit: "Houpu Li — Social & Environmental Data Science Lab Director",
     quote: "Urban Data Science transforms data into insights that serve communities and shape more equitable urban futures.",
     director: "Houpu Li",
     directorTitle: "Lab Director",
@@ -30,6 +32,15 @@ const labs = [
       "Houpu Li is an urban data scientist specializing in GeoAI, spatial modeling, and computational urban research. He was a Research Associate at Harvard University (2024-2025).",
       "He earned a Master's degree in Regional Science from Cornell University (2022-2024) and began his Ph.D. in Geography at the University of California, Santa Barbara in Fall 2025.",
       "His work integrates GeoAI and Python-based spatial analysis to advance equitable and resilient urban development. He contributed to the study \"The Racial Composition of Road Users, Traffic Citations, and Police Stops,\" conducted under the guidance of Professor Wenfei Xu and published in PNAS (2025)."
+    ],
+    coDirector: "Wenzheng Li",
+    coDirectorTitle: "Lab Co-Director",
+    coDirectorImage: "/images/wenzheng-li.jpg",
+    coDirectorProfileHref: "#",
+    coDirectorBio: [
+      "Wenzheng Li is a postdoctoral research fellow at the University of British Columbia and former lecturer at Cornell University.",
+      "His research explores urban systems, climate adaptation, and AI-driven approaches in urban research. His recent work uses AI to shape the public engagement in housing approval process in North America.",
+      "He received his Ph.D. in City and Regional Planning from Cornell University."
     ]
   },
   {
@@ -43,10 +54,10 @@ const labs = [
     projects: [
       "Intelligent Food Ingredient Analysis Platform",
       "Global Food Safety Standards Database",
-      "AI-Driven Personalized Learning Platform for K-12",
-      "UrbanKit - A web-based toolkit for fast, data-driven urban analysis."
+      "Parenting Assistant",
+      "UrbanKit — A web-based toolkit for fast, data-driven urban analysis."
     ],
-    credit: "Zefan Wang - AI & Agent Systems Lab Director",
+    credit: "Zefan Wang — AI & Agent Systems Lab Director",
     quote: "AI agents transform data into adaptive intelligence, enabling intelligent decision-making across systems, applications, and everyday user experiences.",
     director: "Zefan Wang",
     directorTitle: "Lab Director",
@@ -56,6 +67,15 @@ const labs = [
       "Zefan Wang is a Full Stack Engineer specializing in AI systems and agent-based architectures. With over 6 years of experience, he focuses on developing intelligent agents and AI-driven systems that automate complex workflows and enable adaptive, data-driven decision-making.",
       "His work explores the integration of large language models, agent frameworks, and scalable system design to build next-generation AI applications. He has contributed to large-scale deployments where intelligent systems support real-time analysis and coordinated decision processes.",
       "At SENSE Institute, he leads the development of AI agent systems that bridge research and application, pushing forward the role of autonomous and semi-autonomous systems in addressing complex challenges."
+    ],
+    coDirector: "Shiyun Wen",
+    coDirectorTitle: "Lab Co-Director",
+    coDirectorImage: "/images/shiyun_wen.jpg",
+    coDirectorProfileHref: "#",
+    coDirectorBio: [
+      "Shiyun Wen previously worked as a software developer at Unity China and several leading game studios.",
+      "With a background in Computer Science and Data Engineering, she has experience in machine learning, digital twin systems, XR technologies, and data-driven spatial applications.",
+      "She brings strong engineering expertise to interdisciplinary technology and urban innovation projects."
     ]
   },
   // {
@@ -108,15 +128,27 @@ const labs = [
         <p class="director-credit">{lab.credit}</p>
       </div>
 
-      <article class="director-card">
-        <img src={lab.image} alt={`${lab.director} portrait`} />
-        
-        <div>
-          <h3>{lab.directorTitle} I {lab.director}</h3>
-          {lab.bio.map((paragraph) => <p>{paragraph}</p>)}
-          <a class="button" href={lab.profileHref} target="_blank" rel="noreferrer">Profile</a>
-        </div>
-      </article>
+      <div class="directors-container">
+        <article class="director-card">
+          <img src={lab.image} alt={`${lab.director} portrait`} />
+          
+          <div>
+            <h3>{lab.directorTitle} I {lab.director}</h3>
+            <a class="button" href={lab.profileHref} target="_blank" rel="noreferrer">Profile</a>
+          </div>
+        </article>
+
+        {lab.coDirector && (
+          <article class="director-card">
+            <img src={lab.coDirectorImage} alt={`${lab.coDirector} portrait`} />
+            
+            <div>
+              <h3>{lab.coDirectorTitle} I {lab.coDirector}</h3>
+              <a class="button" href={lab.coDirectorProfileHref} target="_blank" rel="noreferrer">Profile</a>
+            </div>
+          </article>
+        )}
+      </div>
 
       <div class="shape-divider" aria-hidden="true">
         <span class="shape-divider-layer shape-divider-layer--back"></span>

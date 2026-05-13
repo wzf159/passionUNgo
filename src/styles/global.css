@@ -798,6 +798,13 @@ h1 {
   background: var(--mist);
 }
 
+.directors-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 30px);
+  align-items: start;
+}
+
 .lab-section--no-director {
   grid-template-columns: minmax(0, 1fr);
 }
@@ -1443,6 +1450,10 @@ h1 {
   .lab-section,
   .lab-detail-grid,
   .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .directors-container {
     grid-template-columns: 1fr;
   }
 
