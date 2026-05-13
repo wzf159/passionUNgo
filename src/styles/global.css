@@ -1611,7 +1611,7 @@ h1 {
 }
 
 .section-heading h2 {
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-size: clamp(2.6rem, 4vw, 4rem);
   font-weight: 300;
   color:#366177;
   margin-bottom: 12px;
@@ -1630,15 +1630,10 @@ h1 {
 }
 
 .advisors-grid {
-  /* 使用 CSS Grid 布局 */
   display: grid;
-  /* 创建4列，每列最小宽度为0，最大占用可用空间的1/4 */
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  /* 设置网格间距，响应式：最小5px，首选2vw视口宽度，最大6px */
-  gap: clamp(5px, 2vw, 26px); /* 间距大小 参数：5px 最小值，2vw 视口宽度百分比，6px 最大值 */
-  /* 限制最大宽度为1400px */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 20px);
   max-width: 1400px;
-  /* 水平居中 */
   margin: 0 auto;
 }
 
@@ -1655,10 +1650,10 @@ h1 {
 
 .advisor-card img {
   width: 100%;
-  aspect-ratio: 4/4;
+  aspect-ratio: 4/5;
   object-fit: cover;
   object-position: center top;
-  border-radius: 8px;
+  border-radius: 18px;
   margin-bottom: 12px;
 }
 
@@ -1671,7 +1666,7 @@ h1 {
 }
 
 .advisor-content h3 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 00;
   color: #ffffff;
   margin-bottom: 4px;
@@ -1681,7 +1676,7 @@ h1 {
 
 .advisor-title {
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #366177;
   margin-bottom: 4px;
   font-family: sans-serif;
@@ -1699,13 +1694,11 @@ h1 {
 }
 
 .advisor-affiliation {
-  font-size: 1rem;
-  color: #ffffff;
+  font-size: 0.85rem;
+  color: #3E6176;
   font-weight: 400;
   line-height: 1.4;
   margin-bottom: 16px;
-  font-family: sans-serif;
-  text-align: left;
 }
 
 .profile-button {

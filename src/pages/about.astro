@@ -11,14 +11,14 @@ const advisors = [
   {
     name: "Álvaro Cano",
     title: "Research Advisor",
-    description: "Multidisciplinary researcher and public policy developer.",
-    affiliation: "Peru's Ministry of Energy and Mines, the British Columbia Government",
+    description: "Water Governance &  <br/> Public Policy Researcher",
+    affiliation: "Worked with USAID, UNDP, and the World Bank",
     image: "/images/alvaro-cano.jpg"
   },
   {
     name: "Damien Raffa",
     title: "Program Advisor",
-    description: "Senior Park Experience & Partnerships Specialist.",
+    description: "Senior Park Experience & <br/>  Partnerships Specialist",
     affiliation: "Presidio Trust",
     image: "/images/damien-raffa.jpg"
   },
@@ -30,10 +30,10 @@ const advisors = [
     image: "/images/erika-bingham.jpg"
   },
   {
-    name: "Feng Shen",
+    name: "Dr. Feng Shen",
     title: "Research Advisor",
     description: "Research Director",
-    affiliation: "Agro-Environmental Protection Institute, Ministry of Agriculture and Rural Affairs of China",
+    affiliation: "Agro Environmental Protection Institute, China",
     image: placeholderImage
   },
   {
@@ -44,25 +44,39 @@ const advisors = [
     image: placeholderImage
   },
   {
-    name: "Guangyin Jin",
+    name: "Dr. Guangyin Jin",
     title: "Research Advisor",
-    description: "Researcher and Visiting Professor of Chang'an University",
-    affiliation: "Chang'an University",
+    description: "Tech Director",
+    affiliation: "PassionULab",
     image: "/images/guangyin-jin.jpg"
   },
   {
-    name: "Jing Guo",
+    name: "Dr. Jing Guo",
     title: "Research Advisor",
-    description: "Assistant Professor at Shenzhen University, Research Director for Governance of Mega-Cities.",
+    description: "Assistant Professor &<br/>  Research Director",
     affiliation: "Shenzhen University",
     image: "/images/jing-guo.jpg"
   },
   {
     name: "Lisa Howard",
     title: "Program Advisor",
-    description: "Co-Founder, Principal",
+    description: "Co-Founder & Principal",
     affiliation: "Bay Tree Design",
     image: "/images/lisa-howard.jpg"
+  },
+  {
+    name: "Dr. Yuxuan Liang",
+    title: "Research Advisor",
+    description: "Assistant Professor",
+    affiliation: "HKUST (Guangzhou)",
+    image: "/images/yuxuan-liang.jpg"
+  },
+  {
+    name: "Xx",
+    title: "Research Advisor",
+    description: "Research Director",
+    affiliation: "xx",
+    image: placeholderImage
   }
 ];
 
@@ -205,7 +219,7 @@ const researchTeam = [
             <div class="advisor-text">
               <h3>{advisor.name}</h3>
               <p class="advisor-title">{advisor.title}</p>
-              <p class="advisor-description">{advisor.description}</p>
+              <p class="advisor-description" set:html={advisor.description} />
               <p class="advisor-affiliation">{advisor.affiliation}</p>
             </div>
             <button class="profile-button">Profile</button>
