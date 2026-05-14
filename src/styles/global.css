@@ -1506,6 +1506,11 @@ h1 {
     font-size: 14px;
   }
 
+  .footer-nav {
+    font-size: 0.9rem;
+    gap: 16px;
+  }
+
   .site-header {
     position: relative;
     background: var(--ink);
