@@ -793,7 +793,7 @@ h1 {
   grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
   gap: clamp(40px, 8vw, 110px);
   align-items: start;
-  padding: 60px  132px;
+  padding: clamp(40px, 6vw, 60px) clamp(20px, 4vw, 132px);
   border-top: 1px solid rgba(255, 255, 255, 0.75);
   background: var(--mist);
 }
@@ -1414,11 +1414,11 @@ h1 {
 
   .brand {
     position: static;
-    width: 92px;
+    width: 200px;
   }
 
   .brand img {
-    width: 92px;
+    width: 200px;
   }
 
   .nav {
@@ -1483,6 +1483,10 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+
   .site-header {
     position: relative;
     background: var(--ink);
@@ -1492,6 +1496,15 @@ h1 {
   .site-header--light {
     background: var(--mist-light);
     color: var(--ink);
+  }
+
+  .page-contact .site-header--overlay {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .page-contact .site-header--overlay .nav a {
+    color: var(--white);
   }
 
   .hero,
@@ -1532,16 +1545,87 @@ h1 {
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
+    line-height: 1;
+  }
+
+  .hero--home h1 {
+    font-size: clamp(2.4rem, 7vw, 3rem);
+  }
+
+  .hero--programs h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle,
+  .hero--programs .hero-subtitle {
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  .section-heading p {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   }
 
   .lab-copy h2 {
     white-space: normal;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+
+  .lab-copy li,
+  .lab-copy p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .lab-copy .focus {
+    font-size: 1.1rem;
+  }
+
+  .director-credit {
+    font-size: clamp(1rem, 2.5vw, 1.3rem) !important;
+  }
+
+  .quote {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  }
+
+  .director-card h3 {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+  }
+
+  .news-card {
+    width: calc(100% - (var(--page-gutter) * 2));
+    padding: clamp(20px, 3vw, 27px);
+  }
+
+  .news-card h3 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+
+  .news-card p {
+    font-size: 1rem;
   }
 
   .news-card img {
     height: clamp(260px, 58vw, 420px);
     min-height: 0;
+  }
+
+  .project-list p {
+    font-size: 0.85rem;
   }
 
   .pillar-grid,
@@ -1579,6 +1663,35 @@ h1 {
   .footer-brand {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .footer-brand strong {
+    font-size: 1.1rem;
+  }
+
+  .copyright {
+    font-size: 1rem;
+  }
+
+  .advisor-card figcaption strong {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+
+  .advisor-card figcaption span {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+  }
+
+  .advisor-card figcaption p {
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+  }
+
+  .profile-card h3 {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  .profile-card > p,
+  .profile-bio p {
+    font-size: 0.85rem;
   }
 }
 

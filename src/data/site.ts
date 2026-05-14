@@ -105,14 +105,14 @@ export const insights = [
   {
     title: "How Do LLMs Shape Your Everyday Life?",
     subtitle: "A 10-year longitudinal survey tracking the impact of AI on everyday life",
-    contributors: "Survey Contributors: Yuetong Wang (Lead Researcher), XXX, XXX",
+    contributors: "Survey Contributors: Yuetong Wang (Lead Researcher)",
     text: "We launched this survey to understand how emerging AI technologies, particularly large language models, are shaping everyday life across diverse communities worldwide. As an ongoing initiative, we aim to track these changes over the next decade, building a longitudinal dataset to uncover how AI applications influence human behavior, perception, and decision-making.",
     image: media.llmSurvey
   },
   {
     title: "Do You Really Know What's in Your Food?",
     subtitle: "A survey exploring how people understand packaged foods, ingredients, and their impacts on health",
-    contributors: "Survey Contributors: Zhiyan Chen (Lead Researcher), XXX, XXX",
+    contributors: "Survey Contributors: Zhiyan Chen (Lead Researcher)",
     text: "We launched this survey to understand how people perceive the health impacts of packaged foods and their ingredients. While ingredient labels are widely available, they are often difficult to interpret, creating a gap between information access and meaningful understanding.",
     image: media.foodSurvey
   }
