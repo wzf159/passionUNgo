@@ -235,12 +235,12 @@ const researchTeam = [
       <h2>Leadership & Administration</h2>
     </div>
 
-    <div class="leadership-grid">
+    <div class="research-grid">
       {leadership.map((person, index) => (
-        <article key={index} class="leadership-card">
+        <article key={index} class="research-card">
           <img src={person.image} alt={`${person.name} portrait`} />
           <h3>{person.name}</h3>
-          <p>{person.role}</p>
+          <p class="research-role">{person.role}</p>
         </article>
       ))}
     </div>

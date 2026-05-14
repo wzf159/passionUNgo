@@ -1987,11 +1987,11 @@ h1 {
 
 @media (max-width: 768px) {
   .advisors-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .leadership-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .research-grid {
@@ -2000,11 +2000,15 @@ h1 {
 }
 
 @media (max-width: 480px) {
+  .advisors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .leadership-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .research-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
