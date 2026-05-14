@@ -1693,6 +1693,17 @@ h1 {
   .profile-bio p {
     font-size: 0.85rem;
   }
+
+  .section--mist.home-news {
+    padding-inline: 12px;
+  }
+
+  .home-news .section-heading {
+    width: min(
+      calc(var(--content-wide) * 0.95),
+      calc((100% - 24px) * 0.95)
+    );
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
