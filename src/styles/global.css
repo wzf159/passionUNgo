@@ -83,7 +83,7 @@ a {
 
 .brand {
   position: absolute;
-  left: var(--page-gutter);
+  left: calc(var(--page-gutter) + 90px);
   display: inline-flex;
   align-items: center;
   width: 150px;
