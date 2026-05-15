@@ -185,11 +185,11 @@ a {
 }
 
 .page-contact .site-header--overlay {
-  color: var(--ink);
+  color: var(--white);
 }
 
 .page-contact .site-header--overlay .nav a {
-  color: var(--ink);
+  color: var(--white);
 }
 
 /* Programs hero often renders as "plain" (no media); keep height consistent with Insights. */
@@ -238,6 +238,22 @@ a {
 
 .hero--insights .hero-overlay {
   background: rgba(13, 45, 51, 0.28);
+}
+
+.page-contact .hero--insights {
+  background: var(--mist);
+}
+
+.page-contact .hero--insights .hero-overlay {
+  background: transparent;
+}
+
+.page-contact .hero--insights h1 {
+  color: var(--ink);
+}
+
+.page-contact .hero--insights .hero-subtitle {
+  color: rgba(12, 61, 80, 0.78);
 }
 
 .hero--plain .hero-overlay {
@@ -1277,7 +1293,7 @@ h1 {
 .contact-cards-section {
   overflow: visible;
   padding-top: 0;
-  background: var(--mist-light);
+  background: var(--mist);
 }
 
 .contact-cards-section .contact-grid {

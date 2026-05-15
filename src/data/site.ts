@@ -138,7 +138,7 @@ export const contactCards = [
   {
     title: "Support Our Work",
     text: "Support our mission through donations and help expand our research, education, and community programs.",
-    email: "info@sense-institute.org",
+    email: "yanyao@sense-institute.org",
     image: media.contactSupport
   }
 ];
