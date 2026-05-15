@@ -27,9 +27,9 @@ export const media = {
   community: "/images/programs/community.jpg",
   llmSurvey: "/images/llm-survey-report.png",
   foodSurvey: "/images/insights/food-survey.jpg",
-  contactCollab: "/images/contact/collab.jpg",
+  contactCollab: "/images/contact/collabration.jpg",
   contactTeam: "/images/contact/team.jpg",
-  contactSupport: "/images/contact/support.png"
+  contactSupport: "/images/contact/join us.png"
 };
 
 export const labProfiles = [
