@@ -25,9 +25,13 @@ import { insights, media } from "@/data/site";
         <p class="insight-contributors">{item.contributors}</p>
         <a class="button insight-button" href={item.surveyUrl} target="_blank" rel="noopener">Join the Survey</a>
         <p class="insight-text">{item.text}</p>
-        <a href={item.surveyHref} target="_blank" rel="noopener">
-          <img class="insight-image insight-image--wide" src={item.image} alt="" />
-        </a>
+        <div class="insight-image insight-image--wide">
+          <iframe
+            src={item.embedUrl}
+            title={item.title}
+            style="width:100%; height:700px; border:none; border-radius:12px;"
+          />
+        </div>
       </div>
     </article>
   ))}
