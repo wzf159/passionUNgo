@@ -580,9 +580,45 @@ h1 {
 .support-actions .button--mint {
   min-width: 180px;
   min-height: 54px;
+  gap: 10px;
   border-radius: 0 999px 999px 0;
-  font-size: 1.14rem;
+  font-size: 1.4rem;
   font-weight: 400;
+}
+
+.support-actions .button--mint::after {
+  display: none;
+}
+
+.support-actions .button--mint:hover span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@keyframes arrow-draw {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.btn-arrow {
+  flex-shrink: 0;
+}
+
+.btn-arrow .arrow-stem,
+.btn-arrow .arrow-head {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  stroke-width: 1.5;
+}
+
+.support-actions .button--mint:hover .btn-arrow .arrow-stem {
+  stroke-width: 3;
+  animation: arrow-draw 0.3s ease forwards;
+}
+
+.support-actions .button--mint:hover .btn-arrow .arrow-head {
+  stroke-width: 3;
+  animation: arrow-draw 0.25s ease 0.2s both;
 }
 
 .home-partners {
@@ -609,7 +645,7 @@ h1 {
 }
 
 .home-partner-logo img {
-  width: 60px;
+  width: 90px;
   height: auto;
 }
 
@@ -713,7 +749,6 @@ h1 {
   gap: 36px 24px;
 }
 
-.advisor-card,
 .profile-card {
   margin: 0;
   width: 90%;
@@ -1832,121 +1867,163 @@ h1 {
   opacity: 0.8;
 }
 
+.advisors-sub-section + .advisors-sub-section {
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
 .advisors-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(10px, 2vw, 20px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.6vw, 20px);
   max-width: 1400px;
   margin: 0 auto;
 }
 
+/* advisor-card: 正面(图片+简介) / 背面(bio) 双面切换
+   aspect-ratio 322:549, front/back 绝对定位充满卡片         */
 .advisor-card {
-  background: #7C95A1;
-  border-radius: 20px;
+  border-radius: 12px;
   overflow: hidden;
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;  /* 新增：让网格填满父容器可用宽度 */
+  background: #7C95A1;
+  aspect-ratio: 322 / 549;
+  position: relative;
 }
 
-.advisor-card img {
+/* ── 正面 / 背面 共用布局 ── */
+.advisor-front,
+.advisor-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.32s ease, visibility 0.32s ease;
+}
+
+/* 默认：显示正面，隐藏背面 */
+.advisor-back {
+  background: #7C95A1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 翻转后：隐藏正面，显示背面 */
+.advisor-card.is-flipped .advisor-front {
+  opacity: 0;
+  visibility: hidden;
+}
+.advisor-card.is-flipped .advisor-back {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── 正面：图片区 (flex:2) ── */
+.advisor-img-wrap {
+  flex: 2;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.advisor-img-wrap img {
   width: 100%;
-  aspect-ratio: 4/5;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 18px;
-  margin-bottom: 12px;
+  display: block;
 }
 
-.advisor-content {
-  padding: 0;
+/* ── 正面：文字区 (flex:1) ── */
+.advisor-text-section {
   flex: 1;
+  background: #7C95A1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  line-height: 1.4;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 1.4vw, 16px) clamp(12px, 1.6vw, 20px) clamp(8px, 1vw, 12px);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
 }
 
-.advisor-content h3 {
-  font-size: 1.7rem;
-  font-weight: 00;
+.advisor-text-section h3 {
+  font-size: clamp(1.05rem, 1.35vw, 1.5rem);
+  font-weight: 700;
   color: #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  line-height: 1.45;
   font-family: sans-serif;
-  text-align: left;
-}
-
-.advisor-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #366177;
-  margin-bottom: 4px;
-  font-family: sans-serif;
-  text-align: left;
 }
 
 .advisor-description {
-  font-size: 0.8rem;
-  color: #ffffff;
-  font-weight: 400;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  font-size: clamp(0.82rem, 0.98vw, 1.05rem);
+  color: #366177;
+  font-weight: 600;
+  margin-bottom: 5px;
+  line-height: 1.55;
   font-family: sans-serif;
-  text-align: left;
-  min-height: 3em;
-  display: flex;
-  align-items: flex-start;
+  text-align: center;
+  display: block;
 }
 
 .advisor-affiliation {
-  font-size: 0.85rem;
+  font-size: clamp(0.76rem, 0.9vw, 0.95rem);
   color: #3E6176;
   font-weight: 400;
-  line-height: 1.4;
-  margin-bottom: 16px;
-}
-
-.profile-button {
-  background-color: #0c3d50;
-  color: #ffffff;
-  border: none;
-  padding: 8px 8px;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  font-family: sans-serif;
+  line-height: 1.5;
+  margin-bottom: 0;
   text-align: center;
-  display: inline-block;
-  width: auto;
-  width: 40%;
-  min-width: 120px;
-  margin: 0;
-  transition: background-color 0.3s ease;
-  position: relative;
-  line-height: 1.4;
 }
 
-.profile-button::after {
-  content: '';
+/* ── 切换按钮（正面 Read More / 背面 Back）── */
+.advisor-toggle {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.78rem, 0.9vw, 0.95rem);
+  cursor: pointer;
+  padding: 2px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: sans-serif;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+
+/* Read More 固定在文字区右下角 */
+.advisor-text-section .advisor-toggle {
   position: absolute;
-  bottom: 6px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
+  bottom: clamp(8px, 1vw, 12px);
+  right: clamp(12px, 1.6vw, 20px);
 }
 
-.profile-button:hover {
-  background-color: #1a5a70;
+.advisor-toggle:hover {
+  color: #ffffff;
 }
 
-.profile-button:hover::after {
-  width: 60%;
+/* ── 背面：bio 文字区 ── */
+.advisor-bio {
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(16px, 2vw, 24px) clamp(16px, 2vw, 22px) 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
+
+.advisor-bio p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(0.85rem, 1vw, 1.05rem);
+  line-height: 1.45;
+  margin-bottom: 0.6em;
+}
+
+.advisor-toggle--back {
+  flex-shrink: 0;
+  padding: clamp(8px, 1vw, 12px) clamp(16px, 2vw, 22px);
+  align-self: flex-end;
+  margin-top: 0;
+}
+
 
 .leadership-grid {
   display: grid;
@@ -2034,11 +2111,13 @@ h1 {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .advisors-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
 
+@media (max-width: 768px) {
   .leadership-grid {
     grid-template-columns: repeat(2, 1fr);
   }

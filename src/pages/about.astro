@@ -20,71 +20,65 @@ const advisors = [
     title: "Research Advisor",
     description: "Water Governance &  <br/> Public Policy Researcher",
     affiliation: "Worked with USAID, UNDP, and the World Bank",
-    image: "/images/alvaro-cano.jpg"
+    image: "/images/alvaro-cano.jpg",
+    bio: "Álvaro Cano is a multidisciplinary researcher and public policy specialist focusing on water resources and environmental governance.<br><br>His work spans public, private, and nonprofit sectors, including collaborations with USAID, UNDP, UNITAR, the World Bank, and other international organizations."
   },
   {
     name: "Damien Raffa",
     title: "Program Advisor",
     description: "Senior Park Experience & <br/>  Partnerships Specialist",
     affiliation: "Presidio Trust",
-    image: "/images/damien-raffa.jpg"
+    image: "/images/damien-raffa.jpg",
+    bio: "Damien Raffa designs and curates place-connecting park experiences for the Presidio Trust.<br><br>Over the past 30 years, he has developed public engagement programs and community-centered experiences that connect people of all ages with urban nature.<br><br>He is an active collaborator across San Francisco's cross-sector community and frequently shares his work through national and international presentations."
   },
   {
     name: "Erika Bingham",
     title: "Program Advisor",
     description: "Lead Toddler Teacher",
     affiliation: "UC Santa Barbara Children's Center",
-    image: "/images/erika-bingham.jpg"
-  },
-  {
-    name: "Dr. Feng Shen",
-    title: "Research Advisor",
-    description: "Research Director",
-    affiliation: "Agro Environmental Protection Institute, China",
-    image: placeholderImage
+    image: "/images/erika-bingham.jpg",
+    bio: "Advisor profile will be available soon."
   },
   {
     name: "Frances Kim",
     title: "Program Advisor",
     description: "Elementary Educator",
     affiliation: "San Leandro Unified School District",
-    image: placeholderImage
+    image: placeholderImage,
+    bio: "With over 20 years of experience, Frances is an elementary educator dedicated to supporting both academic and social-emotional development in diverse youth communities.<br><br>Her work focuses on community-centered learning, youth engagement, and environmental education, encouraging students to better understand social and environmental challenges through active participation.<br><br>Frances is passionate about fostering resilience, responsibility, and positive community impact through education."
   },
   {
     name: "Dr. Guangyin Jin",
     title: "Research Advisor",
     description: "Tech Director",
     affiliation: "PassionULab",
-    image: "/images/guangyin-jin.jpg"
+    image: "/images/guangyin-jin.jpg",
+    bio: "Guangyin Jin is the Tech Director of PassionULab, where he develops AI agent systems that translate urban research and spatial intelligence into public-facing applications.<br><br>His research focuses on urban computing, spatio-temporal data mining, intelligent transportation, and computational social science.<br><br>He has published extensively in leading international journals and conferences and serves as a reviewer and editorial board member for multiple international venues."
   },
   {
     name: "Dr. Jing Guo",
     title: "Research Advisor",
     description: "Assistant Professor &<br/>  Research Director",
     affiliation: "Shenzhen University",
-    image: "/images/jing-guo.jpg"
+    image: "/images/jing-guo.jpg",
+    bio: "Jing Guo is an Assistant Professor at Shenzhen University and Director of Research at the Institute for Governance of Mega-Cities.<br><br>His research focuses on urban and regional economics, urban competitiveness, and megacity governance.<br><br>He has published widely in international and leading Chinese journals, contributed to major urban competitiveness reports, and advised government agencies and Chinese cities on urban development and governance."
   },
   {
     name: "Lisa Howard",
     title: "Program Advisor",
     description: "Co-Founder & Principal",
     affiliation: "Bay Tree Design",
-    image: "/images/lisa-howard.jpg"
+    image: "/images/lisa-howard.jpg",
+    bio: "Advisor profile will be available soon."
   },
   {
     name: "Dr. Yuxuan Liang",
     title: "Research Advisor",
     description: "Assistant Professor",
     affiliation: "HKUST (Guangzhou)",
-    image: "/images/yuxuan-liang.jpg"
+    image: "/images/yuxuan-liang.jpg",
+    bio: "Yuxuan Liang is an Assistant Professor at The Hong Kong University of Science and Technology (Guangzhou). His research focuses on spatio-temporal data mining and urban computing.<br><br>He has published extensively in leading international journals and conferences and currently serves as Associate Editor of Neurocomputing and area chair for several major AI and data mining conferences.<br><br>His work contributes to urban computing and spatial intelligence research across AI and data-driven urban systems."
   },
-  // {
-  //   name: "Xx",
-  //   title: "Research Advisor",
-  //   description: "Research Director",
-  //   affiliation: "xx",
-  //   image: placeholderImage
-  // }
 ];
 
 const leadership = [
@@ -223,27 +217,67 @@ const researchTeam = [
   </Hero>
 
   <section class="about-section about-section--advisors">
-    <div class="section-heading about-section-heading">
-      <h2>Research & Program Advisors</h2>
-      <p class="about-note">(Names listed in alphabetical order)</p>
+
+    <div class="advisors-sub-section">
+      <div class="section-heading about-section-heading">
+        <h2>Research Advisors</h2>
+        <p class="about-note">(Names listed in alphabetical order)</p>
+      </div>
+      <div class="advisors-grid">
+        {advisors.filter(a => a.title === "Research Advisor").map((advisor, index) => (
+          <article class="advisor-card">
+            <div class="advisor-front">
+              <div class="advisor-img-wrap">
+                <img src={advisor.image} alt={`${advisor.name} portrait`} />
+              </div>
+              <div class="advisor-text-section">
+                <h3>{advisor.name}</h3>
+                <p class="advisor-description" set:html={advisor.description} />
+                <p class="advisor-affiliation">{advisor.affiliation}</p>
+                <button class="advisor-toggle">Read More →</button>
+              </div>
+            </div>
+            <div class="advisor-back">
+              <div class="advisor-bio">
+                <p set:html={advisor.bio} />
+              </div>
+              <button class="advisor-toggle advisor-toggle--back">← Back</button>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
 
-    <div class="advisors-grid">
-      {advisors.map((advisor, index) => (
-        <article key={index} class="advisor-card">
-          <img src={advisor.image} alt={`${advisor.name} portrait`} />
-          <div class="advisor-content">
-            <div class="advisor-text">
-              <h3>{advisor.name}</h3>
-              <p class="advisor-title">{advisor.title}</p>
-              <p class="advisor-description" set:html={advisor.description} />
-              <p class="advisor-affiliation">{advisor.affiliation}</p>
+    <div class="advisors-sub-section">
+      <div class="section-heading about-section-heading">
+        <h2>Program Advisors</h2>
+        <p class="about-note">(Names listed in alphabetical order)</p>
+      </div>
+      <div class="advisors-grid">
+        {advisors.filter(a => a.title === "Program Advisor").map((advisor, index) => (
+          <article class="advisor-card">
+            <div class="advisor-front">
+              <div class="advisor-img-wrap">
+                <img src={advisor.image} alt={`${advisor.name} portrait`} />
+              </div>
+              <div class="advisor-text-section">
+                <h3>{advisor.name}</h3>
+                <p class="advisor-description" set:html={advisor.description} />
+                <p class="advisor-affiliation">{advisor.affiliation}</p>
+                <button class="advisor-toggle">Read More →</button>
+              </div>
             </div>
-            <button class="profile-button">Profile</button>
-          </div>
-        </article>
-      ))}
+            <div class="advisor-back">
+              <div class="advisor-bio">
+                <p set:html={advisor.bio} />
+              </div>
+              <button class="advisor-toggle advisor-toggle--back">← Back</button>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
+
   </section>
 
   <section class="about-section about-section--leadership">
@@ -298,3 +332,13 @@ const researchTeam = [
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll('.advisor-card').forEach(card => {
+    card.querySelectorAll('.advisor-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+      });
+    });
+  });
+</script>
