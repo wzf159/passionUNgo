@@ -17,6 +17,7 @@ export const media = {
   labsVideo: "/videos/labs.mp4",
   news: "/images/news.png",
   partnerLogo: "/images/partner-logo1.png",
+  partnerLogo2: "/images/partner-logo2.jpg",
   advisor: "/images/advisor.jpg",
   guangyin: "/images/labs/guangyin.jpg",
   houpu: "/images/labs/houpu.jpg",
