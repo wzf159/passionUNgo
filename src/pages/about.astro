@@ -3,6 +3,13 @@ import Hero from "@/components/Hero.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { media } from "@/data/site";
 
+const pillars = [
+  ["Justice", "Climate & Social Equity"],
+  ["Sustainability", "Environment & Resources"],
+  ["Resilience", "Urban Systems & Infrastructure"],
+  ["Well-being", "Health & Flourishing"]
+];
+
 const advisorImage = "/images/ai-generated-IMAGE.jpg";
 const placeholderImage = "/images/Soft Gradient Background.jpg";
 const placeholderImage2 = "/images/Orange Fluid Shapes.jpg";
@@ -203,6 +210,15 @@ const researchTeam = [
     <div class="mission-copy">
       <p>SENSE Institute is a registered 501(c)(3) nonprofit research organization led by an international network of young scholars, researchers, and practitioners. We advance problem-driven innovation for public impact through evidence-based research, public engagement programs, and open-source technology development.</p>
       <p>Grounded in four interconnected pillars&mdash;Justice, Sustainability, Resilience, and Well-being&mdash;our mission is to bridge research, technology, and public needs by integrating theoretical insight with data-driven methodologies to address real-world social and environmental challenges.</p>
+    </div>
+
+    <div class="pillar-grid pillar-grid--hero">
+      {pillars.map(([title, text]) => (
+        <div class="pillar">
+          <strong>{title}</strong>
+          <span>{text}</span>
+        </div>
+      ))}
     </div>
   </Hero>
 

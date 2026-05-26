@@ -462,7 +462,14 @@ h1 {
 }
 
 .section--ink .section-heading {
+  width: min(
+    calc(var(--content-xl) * 0.9),
+    calc((100% - (var(--page-gutter) * 5)) * 1)
+  );
   margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 .section--ink .section-heading h2 {
@@ -552,20 +559,20 @@ h1 {
 }
 
 .news-card h3 {
-  font-size: clamp(2.8rem, 4.2vw, 4.25rem);
+  font-size: 77px;
   line-height: 1.08;
 }
 
 .news-card p {
   max-width: 860px;
-  font-size: 1.28rem;
+  font-size: 25px;
   line-height: 1.42;
 }
 
 .support-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 36px;
   margin-top: 42px;
 }
@@ -1712,7 +1719,7 @@ h1 {
   }
 
   .support-actions {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
   }
 
