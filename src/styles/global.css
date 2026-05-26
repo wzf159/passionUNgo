@@ -1431,6 +1431,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 24px;
+  padding-left: calc(70px - var(--page-gutter));
 }
 
 .footer-brand img {
@@ -1505,6 +1506,10 @@ h1 {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
+  }
+
+  .footer-brand {
+    padding-left: 0;
   }
 
   .directors-container {
@@ -2044,15 +2049,10 @@ h1 {
 }
 
 @media (max-width: 480px) {
-  .advisors-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .leadership-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  .advisors-grid,
   .research-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: minmax(0, 300px);
+    justify-content: center;
+    max-width: 300px;
   }
 }
