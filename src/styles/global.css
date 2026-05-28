@@ -1008,8 +1008,9 @@ h1 {
 .lab-copy .director-credit {
   color: #1e4c64;
   font-weight: 600;
-  font-size: clamp(1.8rem, 1.5vw, 2.5rem);
+  font-size: clamp(2.2rem, 2vw, 3rem);
   line-height: 1.18;
+  margin-top: 2.5rem;
 }
 
 
@@ -1308,7 +1309,7 @@ h1 {
 
 .insight-image {
   width: min(1180px, 82%);
-  height: clamp(352px, 44vw, 634px);
+  height: clamp(387px, 48vw, 697px);
   margin: 36px auto 0;
   object-fit: contain;
   background: var(--mist-light);
@@ -1694,7 +1695,8 @@ h1 {
   }
 
   .director-credit {
-    font-size: clamp(1rem, 2.5vw, 1.3rem) !important;
+    font-size: clamp(1.3rem, 3vw, 1.7rem) !important;
+    margin-top: 2rem;
   }
 
   .quote {
@@ -1882,7 +1884,7 @@ h1 {
 /* advisor-card: 正面(图片+简介) / 背面(bio) 双面切换
    aspect-ratio 322:549, front/back 绝对定位充满卡片         */
 .advisor-card {
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   background: #7C95A1;
   aspect-ratio: 322 / 549;
@@ -1938,8 +1940,8 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: clamp(10px, 1.4vw, 16px) clamp(12px, 1.6vw, 20px) clamp(8px, 1vw, 12px);
+  justify-content: flex-start;
+  padding: clamp(12px, 1.6vw, 20px) clamp(12px, 1.6vw, 20px) clamp(8px, 1vw, 12px);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -1963,6 +1965,7 @@ h1 {
   font-family: sans-serif;
   text-align: center;
   display: block;
+  min-height: calc(1.55em * 2);
 }
 
 .advisor-affiliation {
