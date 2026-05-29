@@ -66,7 +66,7 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 112px;
-  padding: 20px var(--page-gutter);
+  padding: 70px var(--page-gutter) 20px;
 }
 
 .site-header--overlay,
@@ -140,38 +140,39 @@ a {
   position: relative;
   min-height: 100svh;
   display: grid;
-  place-items: center;
+  align-items: start;
+  justify-items: center;
   overflow: hidden;
   color: var(--white);
   isolation: isolate;
 }
 
 .hero--home {
-  min-height: 90svh;
+  min-height: 100svh;
 }
 
 .hero--mission {
-  min-height: 90svh;
+  min-height: 100svh;
 }
 
 .hero--labs {
-  min-height: 90svh;
+  min-height: 100svh;
 }
 
 .hero--insights {
-  min-height: 90svh !important;
+  min-height: 100svh !important;
 }
 
 .hero--programs {
-  min-height: 90svh;
+  min-height: 100svh;
 }
 
 .hero--compact {
-  min-height: 520px;
+  min-height: 100svh;
 }
 
 .hero--plain {
-  min-height: 640px;
+  min-height: 100svh;
   background: var(--mist-light);
    color: #023F56C7;
 }
@@ -194,8 +195,13 @@ a {
 
 /* Programs hero often renders as "plain" (no media); keep height consistent with Insights. */
 .hero--programs.hero--plain {
-  min-height: 90svh;
+  min-height: 100svh;
   background: var(--mist);
+  color: var(--white);
+}
+
+.hero--programs.hero--plain .hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-media,
@@ -249,11 +255,11 @@ a {
 }
 
 .page-contact .hero--insights h1 {
-  color: var(--ink);
+  color: var(--white);
 }
 
 .page-contact .hero--insights .hero-subtitle {
-  color: rgba(12, 61, 80, 0.78);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero--plain .hero-overlay {
@@ -264,7 +270,7 @@ a {
   position: relative;
   z-index: 1;
   width: min(1180px, calc(100% - (var(--page-gutter) * 2)));
-  padding-top: 76px;
+  padding-top: 300px;
   text-align: center;
 }
 
@@ -288,11 +294,7 @@ a {
 
 .hero--mission .hero-content {
   width: min(var(--content-wide), calc(100% - (var(--page-gutter) * 2)));
-  min-height: 90svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: clamp(120px, 14vh, 170px);
+  padding-top: 300px;
   padding-bottom: clamp(38px, 8vh, 96px);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
 }
@@ -306,12 +308,11 @@ a {
 }
 
 .hero--insights .hero-subtitle {
-  max-width: var(--content);
+  max-width: 1100px;
 }
 
 .hero--programs .hero-content {
   width: min(1320px, calc(100% - (var(--page-gutter) * 2)));
-  transform: translateY(-10%);
 }
 
 
@@ -321,15 +322,16 @@ a {
 }
 
 .hero--programs .hero-subtitle {
-  max-width: 1320px;
+  max-width: 1100px;
   font-size: clamp(1.53rem, 1.8vw, 25px);
 }
 
 .mission-copy {
   width: 95%;
+  max-width: 1100px;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.95);
-  font-size: clamp(1.7rem, 2vw, 25px);
+  font-size: clamp(1.3rem, 1.6vw, 21px);
   line-height: 1.35;
 }
 
@@ -367,6 +369,7 @@ h1 {
 .hero h1 {
   font-weight: 600;
   font-size: clamp(3.3rem, 8vw, 95px);
+  margin-bottom: 56px;
 }
 
 .hero--home h1 {
@@ -376,7 +379,7 @@ h1 {
 }
 
 .hero-subtitle {
-  max-width: 1120px;
+  max-width: 1100px;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.95);
   font-size: clamp(1.7rem, 2vw, 25px);
@@ -388,7 +391,7 @@ h1 {
 }
 
 .hero--labs .hero-subtitle {
-  max-width: 1540px;
+  max-width: 1100px;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -669,7 +672,8 @@ h1 {
 }
 
 .pillar-grid--hero {
-  width: min(1306px, 100%);
+  width: 95%;
+  max-width: 1100px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   margin-top: clamp(52px, 7vh, 92px);
@@ -708,11 +712,11 @@ h1 {
 
 .pillar-grid--hero .pillar strong,
 .pillar-grid--hero .pillar span {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .pillar-grid--hero .pillar span {
-  font-size: 1.18em;
+  font-size: 0.82em;
   white-space: nowrap;
 }
 
@@ -855,7 +859,7 @@ h1 {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+  grid-template-columns: minmax(0, 1fr) minmax(400px, 460px);
   gap: clamp(40px, 8vw, 110px);
   align-items: start;
   padding: clamp(40px, 6vw, 60px) clamp(20px, 4vw, 132px);
@@ -879,7 +883,7 @@ h1 {
 }
 
 .lab-section--research {
-  grid-template-columns: minmax(0, 1fr) minmax(420px, 560px);
+  grid-template-columns: minmax(0, 1fr) minmax(1100px, 1660px);
 }
 
 .lab-copy,
@@ -1059,7 +1063,7 @@ h1 {
   padding-top: 10px;
   margin-bottom: 22px;
   color: var(--ink-soft);
-  font-size: clamp(1.72rem, 2.2vw, 2.25rem);
+  font-size: clamp(1.35rem, 1.6vw, 1.75rem);
   font-weight: 300;
   line-height: 1;
   white-space: nowrap;
@@ -1704,7 +1708,7 @@ h1 {
   }
 
   .director-card h3 {
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
   }
 
   .news-card {
