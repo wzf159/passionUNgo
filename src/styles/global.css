@@ -323,7 +323,7 @@ a {
 
 .hero--programs .hero-subtitle {
   max-width: 1100px;
-  font-size: clamp(1.53rem, 1.8vw, 25px);
+  font-size: clamp(1.3rem, 1.6vw, 21px);
 }
 
 .mission-copy {
@@ -382,7 +382,7 @@ h1 {
   max-width: 1100px;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.95);
-  font-size: clamp(1.7rem, 2vw, 25px);
+  font-size: clamp(1.3rem, 1.6vw, 21px);
   line-height: 1.35;
 }
 
@@ -392,10 +392,6 @@ h1 {
 
 .hero--labs .hero-subtitle {
   max-width: 1100px;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 
 .button {
@@ -2103,6 +2099,8 @@ h1 {
   font-weight: 600;
   margin-bottom: 8px;
   height: 45px;
+  margin-inline: -16px;
+  width: calc(100% + 32px);
 }
 
 .research-bio {
