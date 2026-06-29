@@ -224,7 +224,8 @@ a {
 }
 
 .hero--home .hero-overlay,
-.hero--labs .hero-overlay {
+.hero--labs .hero-overlay,
+.hero--programs .hero-overlay {
   background: linear-gradient(
     180deg,
     rgba(7, 36, 46, 0.7) 52%,
@@ -251,7 +252,12 @@ a {
 }
 
 .page-contact .hero--insights .hero-overlay {
-  background: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 36, 46, 0.7) 52%,
+    rgba(7, 36, 46, 0.7) 82%,
+    rgba(7, 36, 46, 0.7) 100%
+  );
 }
 
 .page-contact .hero--insights h1 {
@@ -1342,7 +1348,6 @@ h1 {
 
 .contact-cards-section {
   overflow: visible;
-  padding-top: 0;
   background: var(--mist);
 }
 

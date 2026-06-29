@@ -86,19 +86,22 @@ export const labProfiles = [
 
 export const programs = [
   {
-    title: "SENSE Talks",
-    text: "For researchers, practitioners, and the public, through open webinars and knowledge exchange, we translate ideas into real-world impact.",
-    image: media.talks
+    title: "SENSE Changemakers",
+    text: "For students, researchers, developers, and emerging leaders who want to turn ideas into action.",
+    image: media.talks,
+    link: "/contact/"
   },
   {
-    title: "SENSE Education",
-    text: "For children and students, through interactive workshops, we build awareness and empower the next generation to engage with social and environmental challenges.",
-    image: media.education
+    title: "SENSE Kids",
+    text: "For children and youth to explore, learn, and develop skills for a changing world.",
+    image: media.education,
+    link: "/contact/"
   },
   {
     title: "SENSE Community",
-    text: "For communities and residents, through participatory research and co-creation, we generate knowledge together and drive meaningful local change.",
-    image: media.community
+    text: "For families, residents, and local organizations to build stronger and more resilient communities.",
+    image: media.community,
+    link: "https://www.zeffy.com/en-US/donation-form/roots-and-wings-3"
   }
 ];
 

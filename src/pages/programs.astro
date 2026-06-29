@@ -9,10 +9,12 @@ import { media, programs } from "@/data/site";
   <Hero
     title="Our Programs"
     variant="programs"
+    video={media.homeVideo}
+    poster={media.homePoster}
     subtitle="We connect research, education, and community engagement to turn knowledge into action. Through public programs, we collaborate with communities to address real-world challenges in climate, cities, and public well-being."
   />
 
-  <section class="section section--mist" style="padding-top: 0;">
+  <section class="section section--mist">
     <div class="cards-grid cards-grid--programs">
       {programs.map((program) => (
         <article class="program-card">
@@ -20,7 +22,7 @@ import { media, programs } from "@/data/site";
           <div class="card-body">
             <h3>{program.title}</h3>
             <p>{program.text}</p>
-            <a class="button" href="/contact/">Read More</a>
+            <a class="button" href={program.link}>Read More</a>
           </div>
         </article>
       ))}
