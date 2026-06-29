@@ -101,7 +101,7 @@ export const programs = [
     title: "SENSE Community",
     text: "For families, residents, and local organizations to build stronger and more resilient communities.",
     image: media.community,
-    link: "https://www.zeffy.com/en-US/donation-form/roots-and-wings-3"
+    link: "/programes/roots-and-wings.html"
   }
 ];
 

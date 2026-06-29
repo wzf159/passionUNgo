@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login – SENSE</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #eaf2f5; display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 20px;
+  }
+  .card {
+    background: #fff; border-radius: 16px; padding: 40px; width: 100%; max-width: 400px;
+    box-shadow: 0 4px 24px rgba(61,100,117,0.1);
+  }
+  .card h1 { color: #3d6475; font-size: 24px; margin-bottom: 8px; }
+  .card p { color: #7a9baa; font-size: 14px; margin-bottom: 24px; }
+  label { display: block; font-size: 13px; font-weight: 600; color: #3d6475; margin-bottom: 4px; }
+  input {
+    width: 100%; padding: 10px 14px; border: 1px solid #d0e2e8; border-radius: 8px;
+    font-size: 14px; margin-bottom: 16px; outline: none; transition: border 0.2s;
+  }
+  input:focus { border-color: #5a9aaa; }
+  button {
+    width: 100%; padding: 12px; background: #3d6475; color: #fff; border: none;
+    border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+  }
+  button:hover { background: #2d4f5e; }
+  .error { color: #d32f2f; font-size: 13px; margin-top: 8px; display: none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>SENSE Admin</h1>
+  <p>Sign in to manage registrations &amp; volunteers</p>
+  <form id="loginForm">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="admin" autocomplete="username">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+    <button type="submit">Sign In</button>
+    <p class="error" id="errorMsg">Invalid username or password</p>
+  </form>
+</div>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const error = document.getElementById('errorMsg');
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      if (res.ok) {
+        // Store credentials for Basic Auth
+        const token = btoa(`${username}:${password}`);
+        sessionStorage.setItem('admin_token', token);
+        window.location.href = 'dashboard.html';
+      } else {
+        error.style.display = 'block';
+      }
+    } catch (err) {
+      error.textContent = 'Connection error';
+      error.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register – Roots & Wings</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue-deep: #3d6475;
+    --blue-mid: #7a9baa;
+    --blue-light: #9ab5c0;
+    --blue-pale: #eaf2f5;
+    --teal: #5a9aaa;
+    --white: #ffffff;
+    --gray-50: #f4f8fa;
+    --gray-100: #e8f0f3;
+    --gray-300: #b8d0d8;
+    --gray-500: #5a7a87;
+    --gray-700: #2e4d5a;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--gray-700); background: var(--gray-50); min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,155,170,0.15);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo svg { width: 36px; height: 36px; }
+  .nav-logo-text { font-size: 15px; font-weight: 700; color: var(--blue-deep); line-height: 1.1; }
+  .nav-logo-text span { color: var(--blue-mid); font-weight: 400; display: block; font-size: 11px; letter-spacing: 0.06em; }
+  .nav-back {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13.5px; font-weight: 500; color: var(--gray-500);
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-back:hover { color: var(--blue-deep); }
+
+  /* HERO STRIP */
+  .page-hero {
+    margin-top: 68px;
+    background: linear-gradient(135deg, #5a8a9a 0%, #2e4d5a 100%);
+    padding: 52px 48px 48px;
+    text-align: center;
+  }
+  .page-hero-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 10px;
+  }
+  .page-hero h1 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .page-hero p { font-size: 16px; color: rgba(255,255,255,0.78); }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* STEP INDICATOR */
+  .steps {
+    display: flex; align-items: center; gap: 0;
+    margin-bottom: 40px; background: var(--white);
+    border-radius: 12px; padding: 20px 28px;
+    box-shadow: 0 2px 12px rgba(61,100,117,0.07);
+  }
+  .step-item { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .step-item:not(:last-child)::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--gray-100); margin: 0 12px;
+  }
+  .step-num {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+    background: var(--gray-100); color: var(--gray-500);
+    transition: all .3s;
+  }
+  .step-num.active { background: var(--blue-deep); color: #fff; }
+  .step-num.done { background: var(--teal); color: #fff; }
+  .step-label { font-size: 13px; font-weight: 500; color: var(--gray-500); white-space: nowrap; }
+  .step-label.active { color: var(--blue-deep); font-weight: 600; }
+
+  /* CARD */
+  .card {
+    background: var(--white); border-radius: 16px;
+    padding: 40px; box-shadow: 0 2px 16px rgba(61,100,117,0.08);
+    display: none;
+  }
+  .card.active { display: block; }
+  .card-title { font-size: 22px; font-weight: 700; color: var(--blue-deep); margin-bottom: 6px; }
+  .card-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 32px; }
+
+  /* CALENDAR */
+  .cal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .cal-month { font-size: 16px; font-weight: 700; color: var(--blue-deep); }
+  .cal-nav {
+    background: none; border: 1px solid var(--gray-300); border-radius: 8px;
+    width: 34px; height: 34px; cursor: pointer; font-size: 16px;
+    color: var(--blue-deep); display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+  }
+  .cal-nav:hover { background: var(--blue-pale); border-color: var(--blue-mid); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-day-label {
+    text-align: center; font-size: 11px; font-weight: 700;
+    color: var(--gray-500); letter-spacing: 0.06em; padding: 8px 0;
+  }
+  .cal-day {
+    text-align: center; padding: 10px 0; border-radius: 8px;
+    font-size: 14px; cursor: pointer; color: var(--gray-700);
+    transition: all .2s; border: 2px solid transparent;
+  }
+  .cal-day:hover:not(.empty):not(.past) { background: var(--blue-pale); color: var(--blue-deep); }
+  .cal-day.empty { cursor: default; }
+  .cal-day.past { color: var(--gray-300); cursor: default; }
+  .cal-day.gathering {
+    font-weight: 700; color: var(--blue-deep);
+    background: var(--blue-pale);
+  }
+  .cal-day.gathering::after {
+    content: ''; display: block; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--teal);
+    margin: 2px auto 0;
+  }
+  .cal-day.selected {
+    background: var(--blue-deep) !important; color: #fff !important;
+    border-color: var(--blue-deep);
+  }
+  .cal-day.selected::after { background: rgba(255,255,255,0.7) !important; }
+  .cal-legend {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 16px; font-size: 12px; color: var(--gray-500);
+  }
+  .cal-legend-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--teal);
+  }
+  .selected-date-display {
+    margin-top: 20px; padding: 14px 18px;
+    background: var(--blue-pale); border-radius: 10px;
+    font-size: 14px; font-weight: 600; color: var(--blue-deep);
+    display: none; align-items: center; gap: 10px;
+  }
+  .selected-date-display.show { display: flex; }
+
+  /* FORM */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 13px; font-weight: 600; color: var(--blue-deep); }
+  .form-group input, .form-group select {
+    padding: 11px 14px; border: 1.5px solid var(--gray-300);
+    border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif;
+    color: var(--gray-700); background: var(--white);
+    transition: border-color .2s, box-shadow .2s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--blue-mid);
+    box-shadow: 0 0 0 3px rgba(122,155,170,0.18);
+  }
+  .form-group input::placeholder { color: var(--gray-300); }
+  .form-hint { font-size: 12px; color: var(--gray-500); }
+
+  .attendees-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+  }
+  .counter-group { display: flex; flex-direction: column; gap: 8px; }
+  .counter-group label { font-size: 13px; font-weight: 600; color: var(--blue-deep); }
+  .counter {
+    display: flex; align-items: center; gap: 0;
+    border: 1.5px solid var(--gray-300); border-radius: 8px; overflow: hidden;
+    width: fit-content;
+  }
+  .counter-btn {
+    width: 40px; height: 42px; border: none; background: var(--gray-50);
+    font-size: 18px; cursor: pointer; color: var(--blue-deep);
+    transition: background .2s; display: flex; align-items: center; justify-content: center;
+  }
+  .counter-btn:hover { background: var(--blue-pale); }
+  .counter-val {
+    width: 52px; text-align: center; font-size: 16px; font-weight: 700;
+    color: var(--blue-deep); border-left: 1px solid var(--gray-300);
+    border-right: 1px solid var(--gray-300); padding: 0 8px; line-height: 42px;
+  }
+
+  /* BUTTONS */
+  .btn-row { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
+  .btn-primary {
+    background: var(--blue-deep); color: #fff;
+    padding: 13px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    border: none; cursor: pointer; transition: all .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #2a3f4a; transform: translateY(-1px); }
+  .btn-primary:disabled { background: var(--gray-300); cursor: not-allowed; transform: none; }
+  .btn-ghost {
+    background: none; color: var(--gray-500);
+    padding: 13px 20px; border-radius: 8px; font-weight: 500; font-size: 14px;
+    border: 1.5px solid var(--gray-300); cursor: pointer; transition: all .2s;
+  }
+  .btn-ghost:hover { border-color: var(--blue-mid); color: var(--blue-deep); }
+
+  /* SUCCESS */
+  .success-card {
+    background: var(--white); border-radius: 16px;
+    padding: 56px 40px; box-shadow: 0 2px 16px rgba(61,100,117,0.08);
+    text-align: center; display: none;
+  }
+  .success-card.show { display: block; }
+  .success-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--blue-deep));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px; font-size: 32px;
+  }
+  .success-card h2 { font-size: 26px; font-weight: 800; color: var(--blue-deep); margin-bottom: 10px; }
+  .success-card p { font-size: 15px; color: var(--gray-500); line-height: 1.7; max-width: 440px; margin: 0 auto 8px; }
+  .success-detail {
+    margin: 24px auto; padding: 20px 28px;
+    background: var(--blue-pale); border-radius: 12px;
+    max-width: 440px; text-align: left;
+  }
+  .success-detail-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 14px; }
+  .success-detail-row:last-child { margin-bottom: 0; }
+  .success-detail-label { font-weight: 600; color: var(--blue-deep); min-width: 80px; }
+  .success-detail-val { color: var(--gray-500); }
+  .email-note {
+    font-size: 13px; color: var(--gray-500); margin-top: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  /* LOADING */
+  .loading-overlay {
+    position: fixed; inset: 0; background: rgba(255,255,255,0.85);
+    display: none; align-items: center; justify-content: center;
+    z-index: 200; flex-direction: column; gap: 16px;
+  }
+  .loading-overlay.show { display: flex; }
+  .spinner {
+    width: 44px; height: 44px; border: 3px solid var(--gray-100);
+    border-top-color: var(--blue-deep); border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; color: var(--gray-500); font-weight: 500; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .page-hero { padding: 40px 24px 36px; }
+    .main { padding: 32px 16px 60px; }
+    .card { padding: 28px 20px; }
+    .form-row, .attendees-row { grid-template-columns: 1fr; }
+    .steps { padding: 16px 20px; gap: 0; }
+    .step-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="roots-and-wings.html">
+    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 6C12 6 6.5 11.5 6.5 18.5" stroke="#5a9aaa" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M19 6C26 6 31.5 11.5 31.5 18.5" stroke="#3d6475" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M19 11C14 11 10 15 10 20" stroke="#5a9aaa" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M19 11C24 11 28 15 28 20" stroke="#3d6475" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <circle cx="19" cy="24" r="3.5" fill="#5a9aaa"/>
+    </svg>
+    <div class="nav-logo-text">SENSE <span>Institute</span></div>
+  </a>
+  <a class="nav-back" href="roots-and-wings.html">← Back to Roots & Wings</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <p class="page-hero-label">Roots & Wings · Registration</p>
+  <h1>Join Our Next Gathering</h1>
+  <p>Pick a date, share a few details, and we'll save your spot.</p>
+</div>
+
+<div class="main">
+
+  <!-- STEP INDICATOR -->
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num active" id="step-num-1">1</div>
+      <span class="step-label active" id="step-label-1">Choose a Date</span>
+    </div>
+    <div class="step-item">
+      <div class="step-num" id="step-num-2">2</div>
+      <span class="step-label" id="step-label-2">Your Information</span>
+    </div>
+    <div class="step-item">
+      <div class="step-num" id="step-num-3">3</div>
+      <span class="step-label" id="step-label-3">Confirmation</span>
+    </div>
+  </div>
+
+  <!-- STEP 1: CALENDAR -->
+  <div class="card active" id="card-1">
+    <h2 class="card-title">Choose a Gathering Date</h2>
+    <p class="card-sub">Gatherings are held one Saturday morning each month, 10:00 AM – 12:00 PM.</p>
+
+    <div class="cal-header">
+      <button class="cal-nav" onclick="prevMonth()">‹</button>
+      <span class="cal-month" id="cal-month-label"></span>
+      <button class="cal-nav" onclick="nextMonth()">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-legend">
+      <div class="cal-legend-dot"></div>
+      Available gathering dates
+    </div>
+    <div class="selected-date-display" id="selected-date-display">
+      <span>📅</span>
+      <span id="selected-date-text"></span>
+    </div>
+
+    <div class="btn-row">
+      <span></span>
+      <button class="btn-primary" id="btn-next-1" onclick="goToStep(2)" disabled>
+        Continue <span>→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 2: FORM -->
+  <div class="card" id="card-2">
+    <h2 class="card-title">Your Information</h2>
+    <p class="card-sub">Just the basics — we'll send your confirmation to the email you provide.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name *</label>
+        <input type="text" id="f-first" placeholder="e.g. Maria" oninput="validateForm()">
+      </div>
+      <div class="form-group">
+        <label>Last Name *</label>
+        <input type="text" id="f-last" placeholder="e.g. Chen" oninput="validateForm()">
+      </div>
+    </div>
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="f-email" placeholder="you@example.com" oninput="validateForm()">
+        <span class="form-hint">Your confirmation will be sent here.</span>
+      </div>
+    </div>
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Phone Number (optional)</label>
+        <input type="tel" id="f-phone" placeholder="(805) 555-0100">
+      </div>
+    </div>
+
+    <div class="attendees-row">
+      <div class="counter-group">
+        <label>Number of Adults</label>
+        <div class="counter">
+          <button class="counter-btn" onclick="adjust('adults', -1)">−</button>
+          <div class="counter-val" id="val-adults">1</div>
+          <button class="counter-btn" onclick="adjust('adults', 1)">+</button>
+        </div>
+      </div>
+      <div class="counter-group">
+        <label>Number of Children</label>
+        <div class="counter">
+          <button class="counter-btn" onclick="adjust('children', -1)">−</button>
+          <div class="counter-val" id="val-children">1</div>
+          <button class="counter-btn" onclick="adjust('children', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Anything you'd like us to know? (optional)</label>
+        <input type="text" id="f-note" placeholder="e.g. first time attending, dietary needs...">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-ghost" onclick="goToStep(1)">← Back</button>
+      <button class="btn-primary" id="btn-submit" onclick="submitForm()" disabled>
+        Submit Registration →
+      </button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-card" id="success-card">
+    <div class="success-icon">✓</div>
+    <h2>You're registered!</h2>
+    <p>We're so glad you're joining us. A confirmation email is on its way to <strong id="confirm-email"></strong>.</p>
+    <div class="success-detail" id="confirm-detail"></div>
+    <p class="email-note">📬 Can't find the email? Check your spam folder.</p>
+    <br>
+    <a href="roots-and-wings.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue-deep);color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin-top:8px;">← Back to Roots & Wings</a>
+  </div>
+
+</div>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-text">Sending your confirmation email…</div>
+</div>
+
+<script>
+  // ── Calendar state ──
+  let currentYear, currentMonth, selectedDate = null;
+  let adults = 1, children = 1;
+
+  // Gathering dates: 3rd Saturday of each month
+  function getGatheringDates(year, month) {
+    const dates = [];
+    const d = new Date(year, month, 1);
+    let saturdays = 0;
+    while (d.getMonth() === month) {
+      if (d.getDay() === 6) {
+        saturdays++;
+        if (saturdays === 3) { dates.push(d.getDate()); break; }
+      }
+      d.setDate(d.getDate() + 1);
+    }
+    return dates;
+  }
+
+  function renderCalendar() {
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('cal-month-label').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+    ['SUN','MON','TUE','WED','THU','FRI','SAT'].forEach(d => {
+      const el = document.createElement('div');
+      el.className = 'cal-day-label'; el.textContent = d;
+      grid.appendChild(el);
+    });
+
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+    const gatheringDates = getGatheringDates(currentYear, currentMonth);
+
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div'); el.className = 'cal-day empty'; grid.appendChild(el);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const el = document.createElement('div');
+      const date = new Date(currentYear, currentMonth, d);
+      const isPast = date < today;
+      const isGathering = gatheringDates.includes(d);
+      const isSelected = selectedDate &&
+        selectedDate.getFullYear() === currentYear &&
+        selectedDate.getMonth() === currentMonth &&
+        selectedDate.getDate() === d;
+
+      let cls = 'cal-day';
+      if (isPast) cls += ' past';
+      else if (isGathering) cls += ' gathering';
+      if (isSelected) cls += ' selected';
+
+      el.className = cls; el.textContent = d;
+
+      if (isGathering && !isPast) {
+        el.onclick = () => selectDate(new Date(currentYear, currentMonth, d));
+      }
+      grid.appendChild(el);
+    }
+  }
+
+  function selectDate(date) {
+    selectedDate = date;
+    const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('selected-date-text').textContent =
+      `${date.toLocaleDateString('en-US', opts)} · 10:00 AM – 12:00 PM`;
+    document.getElementById('selected-date-display').classList.add('show');
+    document.getElementById('btn-next-1').disabled = false;
+    renderCalendar();
+  }
+
+  function prevMonth() {
+    currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } renderCalendar();
+  }
+  function nextMonth() {
+    currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } renderCalendar();
+  }
+
+  // Init calendar to current month
+  const now = new Date();
+  currentYear = now.getFullYear(); currentMonth = now.getMonth();
+  renderCalendar();
+
+  // ── Step navigation ──
+  function goToStep(n) {
+    for (let i = 1; i <= 3; i++) {
+      document.getElementById(`card-${i}`)?.classList.remove('active');
+      const num = document.getElementById(`step-num-${i}`);
+      const lbl = document.getElementById(`step-label-${i}`);
+      num.classList.remove('active', 'done');
+      lbl.classList.remove('active');
+      if (i < n) { num.classList.add('done'); num.textContent = '✓'; }
+      else { num.textContent = i; }
+    }
+    document.getElementById(`card-${n}`)?.classList.add('active');
+    document.getElementById(`step-num-${n}`).classList.add('active');
+    document.getElementById(`step-label-${n}`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Counters ──
+  function adjust(type, delta) {
+    if (type === 'adults') {
+      adults = Math.max(1, adults + delta);
+      document.getElementById('val-adults').textContent = adults;
+    } else {
+      children = Math.max(0, children + delta);
+      document.getElementById('val-children').textContent = children;
+    }
+  }
+
+  // ── Form validation ──
+  function validateForm() {
+    const first = document.getElementById('f-first').value.trim();
+    const last = document.getElementById('f-last').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const valid = first && last && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    document.getElementById('btn-submit').disabled = !valid;
+  }
+
+  // ── Submit & send email via Claude API ──
+  async function submitForm() {
+    const first = document.getElementById('f-first').value.trim();
+    const last = document.getElementById('f-last').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const note = document.getElementById('f-note').value.trim();
+    const dateStr = selectedDate.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    const selectedDateISO = selectedDate.toISOString().split('T')[0];
+
+    document.getElementById('loading').classList.add('show');
+
+    try {
+      const response = await fetch("http://localhost:3001/api/submit-registration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: first,
+          last_name: last,
+          email: email,
+          phone: phone,
+          adults: adults,
+          children: children,
+          selected_date: selectedDateISO,
+          note: note
+        })
+      });
+      const data = await response.json();
+      console.log('Backend response:', data);
+    } catch (e) {
+      console.log('API error', e);
+    }
+
+    document.getElementById('loading').classList.remove('show');
+
+    // Show success
+    document.getElementById('confirm-email').textContent = email;
+    document.getElementById('confirm-detail').innerHTML = `
+      <div class="success-detail-row"><span class="success-detail-label">Date</span><span class="success-detail-val">${dateStr}</span></div>
+      <div class="success-detail-row"><span class="success-detail-label">Time</span><span class="success-detail-val">10:00 AM – 12:00 PM</span></div>
+      <div class="success-detail-row"><span class="success-detail-label">Name</span><span class="success-detail-val">${first} ${last}</span></div>
+      <div class="success-detail-row"><span class="success-detail-label">Attending</span><span class="success-detail-val">${adults} adult${adults>1?'s':''}, ${children} child${children!==1?'ren':''}</span></div>
+      ${phone ? `<div class="success-detail-row"><span class="success-detail-label">Phone</span><span class="success-detail-val">${phone}</span></div>` : ''}
+    `;
+
+    // Hide all cards
+    for (let i = 1; i <= 3; i++) {
+      document.getElementById(`card-${i}`)?.classList.remove('active');
+      const num = document.getElementById(`step-num-${i}`);
+      num.classList.remove('active');
+      num.classList.add('done');
+      num.textContent = '✓';
+      document.getElementById(`step-label-${i}`).classList.remove('active');
+    }
+    document.getElementById(`step-num-3`).classList.add('active');
+    document.getElementById(`step-label-3`).classList.add('active');
+    document.getElementById('success-card').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

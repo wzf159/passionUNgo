@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer – Roots & Wings</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue-deep: #3d6475;
+    --blue-mid: #7a9baa;
+    --blue-light: #9ab5c0;
+    --blue-pale: #eaf2f5;
+    --teal: #5a9aaa;
+    --white: #ffffff;
+    --gray-50: #f4f8fa;
+    --gray-100: #e8f0f3;
+    --gray-300: #b8d0d8;
+    --gray-500: #5a7a87;
+    --gray-700: #2e4d5a;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--gray-700); background: var(--gray-50); min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,155,170,0.15);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo svg { width: 36px; height: 36px; }
+  .nav-logo-text { font-size: 15px; font-weight: 700; color: var(--blue-deep); line-height: 1.1; }
+  .nav-logo-text span { color: var(--blue-mid); font-weight: 400; display: block; font-size: 11px; letter-spacing: 0.06em; }
+  .nav-back { display: flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 500; color: var(--gray-500); text-decoration: none; transition: color .2s; }
+  .nav-back:hover { color: var(--blue-deep); }
+
+  /* HERO */
+  .page-hero {
+    margin-top: 68px;
+    background: linear-gradient(135deg, #5a8a9a 0%, #2e4d5a 100%);
+    padding: 52px 48px 48px; text-align: center;
+  }
+  .page-hero-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .page-hero h1 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .page-hero p { font-size: 16px; color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+  /* MAIN */
+  .main { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* STEP INDICATOR */
+  .steps {
+    display: flex; align-items: center;
+    margin-bottom: 36px; background: var(--white);
+    border-radius: 12px; padding: 20px 28px;
+    box-shadow: 0 2px 12px rgba(61,100,117,0.07);
+  }
+  .step-item { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .step-item:not(:last-child)::after { content: ''; flex: 1; height: 1px; background: var(--gray-100); margin: 0 12px; }
+  .step-num {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+    background: var(--gray-100); color: var(--gray-500); transition: all .3s;
+  }
+  .step-num.active { background: var(--blue-deep); color: #fff; }
+  .step-num.done { background: var(--teal); color: #fff; }
+  .step-label { font-size: 13px; font-weight: 500; color: var(--gray-500); white-space: nowrap; }
+  .step-label.active { color: var(--blue-deep); font-weight: 600; }
+
+  /* CARDS */
+  .card { background: var(--white); border-radius: 16px; padding: 40px; box-shadow: 0 2px 16px rgba(61,100,117,0.08); display: none; }
+  .card.active { display: block; }
+  .card-title { font-size: 22px; font-weight: 700; color: var(--blue-deep); margin-bottom: 6px; }
+  .card-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 32px; line-height: 1.6; }
+
+  /* FORM ELEMENTS */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 13px; font-weight: 600; color: var(--blue-deep); }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 11px 14px; border: 1.5px solid var(--gray-300);
+    border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif;
+    color: var(--gray-700); background: var(--white);
+    transition: border-color .2s, box-shadow .2s; outline: none; resize: vertical;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(122,155,170,0.18);
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--gray-300); }
+  .form-hint { font-size: 12px; color: var(--gray-500); }
+  .char-count { font-size: 11px; color: var(--gray-300); text-align: right; }
+
+  /* CALENDAR MULTI-SELECT */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cal-month { font-size: 16px; font-weight: 700; color: var(--blue-deep); }
+  .cal-nav {
+    background: none; border: 1px solid var(--gray-300); border-radius: 8px;
+    width: 34px; height: 34px; cursor: pointer; font-size: 16px;
+    color: var(--blue-deep); display: flex; align-items: center; justify-content: center; transition: all .2s;
+  }
+  .cal-nav:hover { background: var(--blue-pale); border-color: var(--blue-mid); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-day-label { text-align: center; font-size: 11px; font-weight: 700; color: var(--gray-500); letter-spacing: 0.06em; padding: 8px 0; }
+  .cal-day {
+    text-align: center; padding: 10px 0; border-radius: 8px;
+    font-size: 14px; cursor: default; color: var(--gray-300);
+    transition: all .2s; border: 2px solid transparent; position: relative;
+  }
+  .cal-day.available {
+    color: var(--blue-deep); font-weight: 700;
+    background: var(--blue-pale); cursor: pointer;
+  }
+  .cal-day.available:hover { background: var(--blue-light); color: #fff; }
+  .cal-day.available::after {
+    content: ''; display: block; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--teal); margin: 2px auto 0;
+  }
+  .cal-day.selected { background: var(--blue-deep) !important; color: #fff !important; border-color: var(--blue-deep); }
+  .cal-day.selected::after { background: rgba(255,255,255,0.7) !important; }
+  .cal-legend { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 12px; color: var(--gray-500); }
+  .cal-legend-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+  .selected-dates-list { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; min-height: 20px; }
+  .date-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue-deep); color: #fff;
+    padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;
+  }
+  .date-chip button { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
+  .date-chip button:hover { color: #fff; }
+
+  /* HOURS */
+  .hours-options { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+  .hours-opt {
+    padding: 10px 20px; border: 2px solid var(--gray-300); border-radius: 8px;
+    font-size: 14px; font-weight: 500; cursor: pointer; color: var(--gray-500);
+    transition: all .2s; background: var(--white);
+  }
+  .hours-opt:hover { border-color: var(--blue-mid); color: var(--blue-deep); }
+  .hours-opt.selected { border-color: var(--blue-deep); background: var(--blue-pale); color: var(--blue-deep); font-weight: 700; }
+  .hours-badge { font-size: 11px; color: var(--teal); font-weight: 600; display: block; margin-top: 2px; }
+
+  /* INTERESTS GRID */
+  .section-divider { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-mid); margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-100); }
+  .interests-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .interest-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border: 2px solid var(--gray-100); border-radius: 10px;
+    cursor: pointer; transition: all .2s; background: var(--white);
+  }
+  .interest-item:hover { border-color: var(--blue-light); background: var(--blue-pale); }
+  .interest-item.selected { border-color: var(--blue-deep); background: var(--blue-pale); }
+  .interest-check {
+    width: 20px; height: 20px; border-radius: 5px; border: 2px solid var(--gray-300);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    transition: all .2s; margin-top: 1px;
+  }
+  .interest-item.selected .interest-check { background: var(--blue-deep); border-color: var(--blue-deep); }
+  .interest-check::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 700; display: none; }
+  .interest-item.selected .interest-check::after { display: block; }
+  .interest-text { flex: 1; }
+  .interest-text strong { font-size: 13.5px; font-weight: 600; color: var(--blue-deep); display: block; margin-bottom: 2px; }
+  .interest-text span { font-size: 12px; color: var(--gray-500); line-height: 1.4; }
+
+  /* BUTTONS */
+  .btn-row { display: flex; justify-content: space-between; align-items: center; margin-top: 36px; }
+  .btn-primary {
+    background: var(--blue-deep); color: #fff;
+    padding: 13px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    border: none; cursor: pointer; transition: all .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #2a3f4a; transform: translateY(-1px); }
+  .btn-primary:disabled { background: var(--gray-300); cursor: not-allowed; transform: none; }
+  .btn-ghost {
+    background: none; color: var(--gray-500); padding: 13px 20px;
+    border-radius: 8px; font-weight: 500; font-size: 14px;
+    border: 1.5px solid var(--gray-300); cursor: pointer; transition: all .2s;
+  }
+  .btn-ghost:hover { border-color: var(--blue-mid); color: var(--blue-deep); }
+
+  /* SUCCESS */
+  .success-card { background: var(--white); border-radius: 16px; padding: 56px 40px; box-shadow: 0 2px 16px rgba(61,100,117,0.08); text-align: center; display: none; }
+  .success-card.show { display: block; }
+  .success-icon { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--blue-deep)); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 32px; }
+  .success-card h2 { font-size: 26px; font-weight: 800; color: var(--blue-deep); margin-bottom: 10px; }
+  .success-card p { font-size: 15px; color: var(--gray-500); line-height: 1.7; max-width: 480px; margin: 0 auto 8px; }
+  .success-detail { margin: 24px auto; padding: 20px 28px; background: var(--blue-pale); border-radius: 12px; max-width: 480px; text-align: left; }
+  .success-detail-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 14px; }
+  .success-detail-row:last-child { margin-bottom: 0; }
+  .success-detail-label { font-weight: 600; color: var(--blue-deep); min-width: 90px; }
+  .success-detail-val { color: var(--gray-500); line-height: 1.5; }
+
+  /* LOADING */
+  .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.85); display: none; align-items: center; justify-content: center; z-index: 200; flex-direction: column; gap: 16px; }
+  .loading-overlay.show { display: flex; }
+  .spinner { width: 44px; height: 44px; border: 3px solid var(--gray-100); border-top-color: var(--blue-deep); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; color: var(--gray-500); font-weight: 500; }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .page-hero { padding: 40px 24px 36px; }
+    .main { padding: 28px 16px 60px; }
+    .card { padding: 24px 18px; }
+    .form-row, .form-row.triple { grid-template-columns: 1fr; }
+    .interests-grid { grid-template-columns: 1fr; }
+    .step-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 6C12 6 6.5 11.5 6.5 18.5" stroke="#5a9aaa" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M19 6C26 6 31.5 11.5 31.5 18.5" stroke="#3d6475" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M19 11C14 11 10 15 10 20" stroke="#5a9aaa" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M19 11C24 11 28 15 28 20" stroke="#3d6475" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <circle cx="19" cy="24" r="3.5" fill="#5a9aaa"/>
+    </svg>
+    <div class="nav-logo-text">SENSE <span>Institute</span></div>
+  </a>
+  <a class="nav-back" href="roots-and-wings.html">← Back to Roots & Wings</a>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-label">Roots & Wings · Volunteer</p>
+  <h1>Become a Volunteer</h1>
+  <p>Join our team and help create a welcoming community for families. Every contribution — big or small — makes a difference.</p>
+</div>
+
+<div class="main">
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num active" id="sn1">1</div>
+      <span class="step-label active" id="sl1">Basic Info</span>
+    </div>
+    <div class="step-item">
+      <div class="step-num" id="sn2">2</div>
+      <span class="step-label" id="sl2">Availability</span>
+    </div>
+    <div class="step-item">
+      <div class="step-num" id="sn3">3</div>
+      <span class="step-label" id="sl3">Your Interests</span>
+    </div>
+    <div class="step-item">
+      <div class="step-num" id="sn4">4</div>
+      <span class="step-label" id="sl4">Your Story</span>
+    </div>
+  </div>
+
+  <!-- STEP 1: BASIC INFO -->
+  <div class="card active" id="card-1">
+    <h2 class="card-title">Tell us about yourself</h2>
+    <p class="card-sub">We'd love to get to know you a little before you join the team.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name *</label>
+        <input type="text" id="v-first" placeholder="e.g. Sofia" oninput="validate1()">
+      </div>
+      <div class="form-group">
+        <label>Last Name *</label>
+        <input type="text" id="v-last" placeholder="e.g. Martinez" oninput="validate1()">
+      </div>
+    </div>
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="v-email" placeholder="you@example.com" oninput="validate1()">
+        <span class="form-hint">Your confirmation will be sent here.</span>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Phone Number (optional)</label>
+        <input type="tel" id="v-phone" placeholder="(805) 555-0100">
+      </div>
+      <div class="form-group">
+        <label>Preferred Language</label>
+        <select id="v-lang">
+          <option value="English">English</option>
+          <option value="Spanish">Spanish / Español</option>
+          <option value="Both">Both English & Spanish</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row single">
+      <div class="form-group">
+        <label>Any relevant background or skills? (optional)</label>
+        <input type="text" id="v-skills" placeholder="e.g. early childhood education, graphic design, social work...">
+        <span class="form-hint">Helps us match you to the right role.</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <span></span>
+      <button class="btn-primary" id="btn1" onclick="goStep(2)" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: AVAILABILITY -->
+  <div class="card" id="card-2">
+    <h2 class="card-title">When can you join us?</h2>
+    <p class="card-sub">Gatherings are on the 3rd Saturday of each month, 10:00 AM – 12:00 PM. Select all dates that work for you — you're not committing to all of them.</p>
+
+    <div class="cal-header">
+      <button class="cal-nav" onclick="prevMonth()">‹</button>
+      <span class="cal-month" id="cal-month-label"></span>
+      <button class="cal-nav" onclick="nextMonth()">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-legend"><div class="cal-legend-dot"></div> Available gathering dates — tap to select multiple</div>
+    <div class="selected-dates-list" id="chips-container"></div>
+
+    <div style="margin-top: 28px;">
+      <div class="form-group">
+        <label>How many hours can you volunteer per session?</label>
+        <div class="hours-options">
+          <div class="hours-opt" onclick="selectHours(this, '1 hour')">1 Hour</div>
+          <div class="hours-opt selected" onclick="selectHours(this, '2 hours')">2 Hours <span class="hours-badge">★ Recommended</span></div>
+          <div class="hours-opt" onclick="selectHours(this, 'Flexible')">Flexible</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-ghost" onclick="goStep(1)">← Back</button>
+      <button class="btn-primary" id="btn2" onclick="goStep(3)" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: INTERESTS -->
+  <div class="card" id="card-3">
+    <h2 class="card-title">How would you like to help?</h2>
+    <p class="card-sub">Choose everything that interests you — we'll find the best fit together. You can always change your mind later.</p>
+
+    <div class="section-divider">🎪 On the Day — Event Activities</div>
+    <div class="interests-grid">
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>🎨 Guide Children's Themed Play</strong>
+          <span>Lead hands-on activities, storytelling, or nature exploration with kids</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>💬 Lead Parent Circle Discussion</strong>
+          <span>Facilitate peer conversations and guide monthly topic discussions</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>🤝 Welcome & Greet Families</strong>
+          <span>Be the first friendly face — help new families feel at home</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>🍎 Set Up & Clean Up</strong>
+          <span>Arrive early or stay late to prepare and pack down the space</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>📸 Photography & Documentation</strong>
+          <span>Capture the warmth of the gathering for our community memory</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>🌐 Translation & Language Support</strong>
+          <span>Help non-English speaking families feel included and informed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider">📋 Behind the Scenes — Preparation & Outreach</div>
+    <div class="interests-grid">
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>📢 Community Outreach</strong>
+          <span>Spread the word at local schools, libraries, clinics, and community spaces</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>📱 Social Media & Content</strong>
+          <span>Create posts, stories, and content to grow our community presence</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>🗂️ Logistics & Coordination</strong>
+          <span>Help with planning, supplies, scheduling, and behind-the-scenes prep</span>
+        </div>
+      </div>
+      <div class="interest-item" onclick="toggleInterest(this)">
+        <div class="interest-check"></div>
+        <div class="interest-text">
+          <strong>✉️ Newsletters & Communication</strong>
+          <span>Help draft family updates, email newsletters, and program announcements</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-ghost" onclick="goStep(2)">← Back</button>
+      <button class="btn-primary" id="btn3" onclick="goStep(4)" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: YOUR STORY -->
+  <div class="card" id="card-4">
+    <h2 class="card-title">Your story</h2>
+    <p class="card-sub">Two short questions to help us understand what brings you here. There are no right answers — just share what feels true.</p>
+
+    <div class="form-row single" style="margin-bottom:24px;">
+      <div class="form-group">
+        <label>Why do you want to support Roots & Wings? *</label>
+        <textarea id="v-why" rows="4" placeholder="e.g. I'm a parent myself and I know how isolating those early years can feel. I want to help create the kind of community I wish I'd had..." oninput="validate4(); countChars('v-why','count-why',300)"></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span class="form-hint">Share what draws you to this program.</span>
+          <span class="char-count" id="count-why">0 / 300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row single">
+      <div class="form-group">
+        <label>What do you hope to gain from volunteering? *</label>
+        <textarea id="v-gain" rows="4" placeholder="e.g. I'd love to meet other parents, build new skills, and feel more connected to my community..." oninput="validate4(); countChars('v-gain','count-gain',300)"></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span class="form-hint">Connection, skills, giving back — whatever it means to you.</span>
+          <span class="char-count" id="count-gain">0 / 300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-ghost" onclick="goStep(3)">← Back</button>
+      <button class="btn-primary" id="btn4" onclick="submitVolunteer()" disabled>Submit Application →</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-card" id="success-card">
+    <div class="success-icon">🌱</div>
+    <h2>Welcome to the team!</h2>
+    <p>Thank you for stepping up. We've received your application and will be in touch within a few days at <strong id="confirm-email"></strong>.</p>
+    <div class="success-detail" id="confirm-detail"></div>
+    <p style="font-size:13px;color:var(--gray-500);margin-top:16px;">📬 Can't find the confirmation email? Check your spam folder.</p>
+    <br>
+    <a href="roots-and-wings.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue-deep);color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin-top:8px;">← Back to Roots & Wings</a>
+  </div>
+
+</div>
+
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-text">Submitting your application…</div>
+</div>
+
+<script>
+  // ── State ──
+  let calYear, calMonth;
+  let selectedDates = [];
+  let selectedHours = '2 hours';
+  let selectedInterests = [];
+
+  // ── Calendar ──
+  function getGatheringDay(year, month) {
+    let saturdays = 0;
+    for (let d = 1; d <= 31; d++) {
+      const date = new Date(year, month, d);
+      if (date.getMonth() !== month) break;
+      if (date.getDay() === 6) { saturdays++; if (saturdays === 3) return d; }
+    }
+    return null;
+  }
+
+  function renderCalendar() {
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('cal-month-label').textContent = `${months[calMonth]} ${calYear}`;
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+    ['SUN','MON','TUE','WED','THU','FRI','SAT'].forEach(d => {
+      const el = document.createElement('div'); el.className = 'cal-day-label'; el.textContent = d; grid.appendChild(el);
+    });
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+    const gDay = getGatheringDay(calYear, calMonth);
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div'); el.className = 'cal-day'; grid.appendChild(el);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const el = document.createElement('div');
+      const date = new Date(calYear, calMonth, d);
+      const isPast = date < today;
+      const isGathering = d === gDay && !isPast;
+      const dateKey = `${calYear}-${calMonth}-${d}`;
+      const isSelected = selectedDates.some(x => x.key === dateKey);
+      let cls = 'cal-day';
+      if (isGathering) cls += ' available';
+      if (isSelected) cls += ' selected';
+      el.className = cls; el.textContent = d;
+      if (isGathering) el.onclick = () => toggleDate(date, dateKey);
+      grid.appendChild(el);
+    }
+  }
+
+  function toggleDate(date, key) {
+    const idx = selectedDates.findIndex(x => x.key === key);
+    if (idx >= 0) selectedDates.splice(idx, 1);
+    else selectedDates.push({ key, date });
+    renderCalendar();
+    renderChips();
+    document.getElementById('btn2').disabled = selectedDates.length === 0;
+  }
+
+  function renderChips() {
+    const c = document.getElementById('chips-container');
+    c.innerHTML = '';
+    selectedDates.sort((a,b) => a.date - b.date).forEach(({ key, date }) => {
+      const chip = document.createElement('div'); chip.className = 'date-chip';
+      const label = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      chip.innerHTML = `📅 ${label} <button onclick="removeDate('${key}')">×</button>`;
+      c.appendChild(chip);
+    });
+  }
+
+  function removeDate(key) {
+    selectedDates = selectedDates.filter(x => x.key !== key);
+    renderCalendar(); renderChips();
+    document.getElementById('btn2').disabled = selectedDates.length === 0;
+  }
+
+  function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
+  function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+
+  const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth();
+  renderCalendar();
+
+  // ── Hours ──
+  function selectHours(el, val) {
+    document.querySelectorAll('.hours-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected'); selectedHours = val;
+  }
+
+  // ── Interests ──
+  function toggleInterest(el) {
+    el.classList.toggle('selected');
+    selectedInterests = Array.from(document.querySelectorAll('.interest-item.selected'))
+      .map(e => e.querySelector('strong').textContent.trim());
+    document.getElementById('btn3').disabled = selectedInterests.length === 0;
+  }
+
+  // ── Steps ──
+  function goStep(n) {
+    for (let i = 1; i <= 4; i++) {
+      document.getElementById(`card-${i}`)?.classList.remove('active');
+      const sn = document.getElementById(`sn${i}`), sl = document.getElementById(`sl${i}`);
+      sn.classList.remove('active','done'); sl.classList.remove('active');
+      if (i < n) { sn.classList.add('done'); sn.textContent = '✓'; }
+      else { sn.textContent = i; }
+    }
+    document.getElementById(`card-${n}`)?.classList.add('active');
+    document.getElementById(`sn${n}`).classList.add('active');
+    document.getElementById(`sl${n}`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Validation ──
+  function validate1() {
+    const f = document.getElementById('v-first').value.trim();
+    const l = document.getElementById('v-last').value.trim();
+    const e = document.getElementById('v-email').value.trim();
+    document.getElementById('btn1').disabled = !(f && l && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
+  }
+
+  function validate4() {
+    const w = document.getElementById('v-why').value.trim();
+    const g = document.getElementById('v-gain').value.trim();
+    document.getElementById('btn4').disabled = !(w.length >= 10 && g.length >= 10);
+  }
+
+  function countChars(inputId, countId, max) {
+    const val = document.getElementById(inputId).value;
+    const el = document.getElementById(countId);
+    const len = Math.min(val.length, max);
+    el.textContent = `${len} / ${max}`;
+    el.style.color = len >= max * 0.9 ? '#e07a5f' : 'var(--gray-300)';
+    if (val.length > max) document.getElementById(inputId).value = val.substring(0, max);
+  }
+
+  // ── Submit ──
+  async function submitVolunteer() {
+    const first = document.getElementById('v-first').value.trim();
+    const last = document.getElementById('v-last').value.trim();
+    const email = document.getElementById('v-email').value.trim();
+    const why = document.getElementById('v-why').value.trim();
+    const gain = document.getElementById('v-gain').value.trim();
+    const datesList = selectedDates.map(({date}) => date.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})).join(', ');
+
+    document.getElementById('loading').classList.add('show');
+
+    try {
+      const response = await fetch("http://localhost:3001/api/submit-volunteer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: first,
+          last_name: last,
+          email: email,
+          available_dates: datesList,
+          hours_per_session: selectedHours,
+          interests: selectedInterests.join(', '),
+          why_help: why,
+          gain: gain
+        })
+      });
+      const data = await response.json();
+      console.log('Backend response:', data);
+    } catch(e) { console.log('API error', e); }
+
+    document.getElementById('loading').classList.remove('show');
+
+    // Show success
+    document.getElementById('confirm-email').textContent = email;
+    document.getElementById('confirm-detail').innerHTML = `
+      <div class="success-detail-row"><span class="success-detail-label">Name</span><span class="success-detail-val">${first} ${last}</span></div>
+      <div class="success-detail-row"><span class="success-detail-label">Dates</span><span class="success-detail-val">${datesList || '—'}</span></div>
+      <div class="success-detail-row"><span class="success-detail-label">Hours</span><span class="success-detail-val">${selectedHours} per session</span></div>
+      <div class="success-detail-row"><span class="success-detail-label">Interests</span><span class="success-detail-val">${selectedInterests.slice(0,3).join(', ')}${selectedInterests.length > 3 ? ` +${selectedInterests.length-3} more` : ''}</span></div>
+    `;
+
+    for (let i = 1; i <= 4; i++) {
+      document.getElementById(`card-${i}`)?.classList.remove('active');
+      const sn = document.getElementById(`sn${i}`);
+      sn.classList.remove('active'); sn.classList.add('done'); sn.textContent = '✓';
+      document.getElementById(`sl${i}`).classList.remove('active');
+    }
+    document.getElementById('success-card').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteers – SENSE Admin</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif; background: #eaf2f5; min-height: 100vh;
+  }
+  nav {
+    background: #3d6475; color: #fff; padding: 16px 32px; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  nav h1 { font-size: 18px; font-weight: 600; }
+  nav .nav-links { display: flex; gap: 20px; }
+  nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+  nav a:hover, nav a.active { color: #fff; }
+  nav a.active { border-bottom: 2px solid #5a9aaa; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+  .search-bar { margin-bottom: 16px; display: flex; gap: 12px; align-items: center; }
+  .search-bar input {
+    flex: 1; padding: 10px 14px; border: 1px solid #d0e2e8; border-radius: 8px;
+    font-size: 14px; outline: none; background: #fff;
+  }
+  .search-bar input:focus { border-color: #5a9aaa; }
+  .count-badge { font-size: 14px; color: #7a9baa; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(61,100,117,0.08); }
+  th, td { padding: 12px 16px; text-align: left; font-size: 13px; border-bottom: 1px solid #e8f0f3; }
+  th { background: #f4f8fa; color: #3d6475; font-weight: 600; white-space: nowrap; }
+  tr:hover { background: #fafcfd; }
+  .sent { color: #2e7d32; font-size: 12px; }
+  .not-sent { color: #999; font-size: 12px; }
+  .empty { text-align: center; padding: 60px 20px; color: #7a9baa; }
+  .modal {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    align-items: center; justify-content: center; padding: 20px; z-index: 100;
+  }
+  .modal.open { display: flex; }
+  .modal-content {
+    background: #fff; border-radius: 12px; padding: 32px; max-width: 500px; width: 100%;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .modal-content h3 { color: #3d6475; margin-bottom: 16px; }
+  .modal-content .row { display: flex; padding: 6px 0; border-bottom: 1px solid #e8f0f3; }
+  .modal-content .label { width: 120px; color: #7a9baa; font-size: 13px; }
+  .modal-content .value { flex: 1; font-size: 13px; font-weight: 500; }
+  .modal-close {
+    margin-top: 16px; padding: 8px 20px; background: #3d6475; color: #fff;
+    border: none; border-radius: 6px; cursor: pointer; font-size: 13px;
+  }
+  .modal-close:hover { background: #2d4f5e; }
+  .tag {
+    display: inline-block; padding: 2px 8px; background: #eaf2f5; border-radius: 4px;
+    font-size: 11px; color: #3d6475; margin: 1px;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <h1>Volunteers</h1>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="registrations.html">Registrations</a>
+    <a href="volunteers.html" class="active">Volunteers</a>
+    <a href="index.html" onclick="logout()">Sign Out</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search by name or email..." oninput="renderTable()">
+    <span class="count-badge" id="countBadge">0 records</span>
+  </div>
+  <div id="tableContainer">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Email</th><th>Available Dates</th><th>Hours</th><th>Interests</th><th>Submitted</th><th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="8" class="empty">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal" id="detailModal">
+  <div class="modal-content" id="detailContent"></div>
+</div>
+<script>
+  function getAuth() { return sessionStorage.getItem('admin_token'); }
+  function logout() { sessionStorage.removeItem('admin_token'); }
+
+  let data = [];
+  async function loadData() {
+    const token = getAuth();
+    if (!token) { window.location.href = 'index.html'; return; }
+    try {
+      const res = await fetch('/api/admin/volunteers', {
+        headers: { 'Authorization': `Basic ${token}` }
+      });
+      if (res.status === 401) { sessionStorage.removeItem('admin_token'); window.location.href = 'index.html'; return; }
+      data = await res.json();
+      renderTable();
+    } catch (err) { console.error(err); }
+  }
+
+  function renderTable() {
+    const q = document.getElementById('search').value.toLowerCase();
+    const filtered = data.filter(r =>
+      `${r.first_name} ${r.last_name}`.toLowerCase().includes(q) ||
+      r.email.toLowerCase().includes(q)
+    );
+    document.getElementById('countBadge').textContent = `${filtered.length} records`;
+    const tbody = document.getElementById('tableBody');
+    if (filtered.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" class="empty">No records found</td></tr>';
+      return;
+    }
+    tbody.innerHTML = filtered.map(r => {
+      const interests = r.interests ? r.interests.split(',').slice(0,3).map(i => `<span class="tag">${i.trim()}</span>`).join('') + (r.interests.split(',').length > 3 ? ` <span class="tag">+${r.interests.split(',').length-3}</span>` : '') : '—';
+      return `<tr onclick="showDetail(${r.id})" style="cursor:pointer;">
+        <td>${r.id}</td>
+        <td>${r.first_name} ${r.last_name}</td>
+        <td>${r.email}</td>
+        <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.available_dates || '—'}</td>
+        <td>${r.hours_per_session || '—'}</td>
+        <td>${interests}</td>
+        <td>${r.created_at}</td>
+        <td>${r.confirmation_sent ? '<span class="sent">✓ Sent</span>' : '<span class="not-sent">—</span>'}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function showDetail(id) {
+    const r = data.find(d => d.id === id);
+    if (!r) return;
+    document.getElementById('detailContent').innerHTML = `
+      <h3>Volunteer #${r.id}</h3>
+      <div class="row"><span class="label">Name</span><span class="value">${r.first_name} ${r.last_name}</span></div>
+      <div class="row"><span class="label">Email</span><span class="value">${r.email}</span></div>
+      <div class="row"><span class="label">Dates</span><span class="value">${r.available_dates || '—'}</span></div>
+      <div class="row"><span class="label">Hours</span><span class="value">${r.hours_per_session || '—'}</span></div>
+      <div class="row"><span class="label">Interests</span><span class="value">${r.interests || '—'}</span></div>
+      <div class="row"><span class="label">Why Help</span><span class="value">${r.why_help || '—'}</span></div>
+      <div class="row"><span class="label">Hope to Gain</span><span class="value">${r.gain || '—'}</span></div>
+      <div class="row"><span class="label">Email Sent</span><span class="value">${r.confirmation_sent ? '✓ Yes' : '—'}</span></div>
+      <div class="row"><span class="label">Submitted</span><span class="value">${r.created_at}</span></div>
+      <button class="modal-close" onclick="closeDetail()">Close</button>
+    `;
+    document.getElementById('detailModal').classList.add('open');
+  }
+  function closeDetail() { document.getElementById('detailModal').classList.remove('open'); }
+  document.getElementById('detailModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeDetail();
+  });
+  loadData();
+</script>
+</body>
+</html>
