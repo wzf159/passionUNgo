@@ -9,10 +9,13 @@ import { media, programs } from "@/data/site";
   <Hero
     title="Our Programs"
     variant="programs"
-    video={media.homeVideo}
-    poster={media.homePoster}
-    subtitle="We connect research, education, and community engagement to turn knowledge into action. Through public programs, we collaborate with communities to address real-world challenges in climate, cities, and public well-being."
-  />
+    image={media.programsPoster}
+  >
+    <div class="hero-copy">
+      <p>Our programs empower people at every stage of life&mdash;from curious children and aspiring changemakers to families and local communities. Through hands-on learning, interdisciplinary research, and community collaboration, we make scientific knowledge understandable, accessible, and actionable for everyone.</p>
+      <p>Whether inspiring the next generation through SENSE Kids, supporting future leaders through SENSE Changemakers, or strengthening neighborhoods through SENSE Community, our programs create opportunities for learning, innovation, and lasting social impact.</p>
+    </div>
+  </Hero>
 
   <section class="section section--mist">
     <div class="cards-grid cards-grid--programs">

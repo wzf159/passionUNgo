@@ -104,11 +104,19 @@ const labs = [
 <BaseLayout title="Labs" headerMode="overlay">
   <Hero
     title="Our Labs"
-    video={media.labsVideo}
-    poster={media.labsPoster}
+    image={media.labsPoster}
     variant="labs"
-    subtitle="Our labs are led by passionate young researchers and practitioners from diverse backgrounds. Together, they advance interdisciplinary research across data science, AI, and complex systems to address pressing challenges in climate, urban environments, and public well-being."
-  />
+  >
+    <div class="hero-copy">
+      <p>Our labs bring together passionate young researchers and practitioners from diverse disciplines and backgrounds. Together, we conduct interdisciplinary research guided by our four core pillars&mdash;Justice, Sustainability, Resilience, and Well-being&mdash;to address complex societal and environmental challenges.</p>
+      <p>By integrating expertise across data science, artificial intelligence, design, engineering, and the social sciences, our labs generate evidence and innovative solutions that support education, community programs, and open-source development for greater public impact.</p>
+    </div>
+
+    <div class="lab-hero-cards" aria-label="SENSE Institute labs">
+      <div class="lab-hero-card">Social &amp; Environmental Data Science Lab</div>
+      <div class="lab-hero-card">Intelligent Agents &amp; Systems Lab</div>
+    </div>
+  </Hero>
 
   {labs.map((lab) => (
     <section class="section lab-section">

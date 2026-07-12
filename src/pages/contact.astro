@@ -1,30 +1,33 @@
 ---
 import Hero from "@/components/Hero.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { contactCards, media } from "@/data/site";
+import { media } from "@/data/site";
 ---
 
 <BaseLayout title="Contact" headerMode="overlay">
   <Hero
     title="Contact Us"
-    subtitle="We'd love to hear from you. Whether you're interested in collaboration, have questions about our work, or simply want to connect, feel free to reach out."
-    video={media.labsVideo}
-    poster={media.labsPoster}
+    subtitle="We&rsquo;d love to hear from you. Whether you&rsquo;re interested in collaboration, have questions about our work, or simply want to connect, feel free to reach out."
+    image={media.contactPoster}
     variant="insights"
   />
 
-  <section class="section section--paper contact-cards-section">
-    <div class="contact-grid">
-      {contactCards.map((card) => (
-        <article class="contact-card" id={card.title.includes("Support") ? "support" : undefined}>
-          <img src={card.image} alt="" />
-          <div class="card-body">
-            <h3>{card.title}</h3>
-            <p>{card.text}</p>
-            <a href={`mailto:${card.email}`}>{card.email}</a>
-          </div>
-        </article>
-      ))}
-    </div>
+  <section class="section contact-info-section">
+    <article class="contact-info-card">
+      <div class="contact-info-column">
+        <h2>Let's Connect</h2>
+        <p>For partnerships, collaborations, contributions, or general inquiries.</p>
+        <a href="mailto:info@sense-institute.org">info@sense-institute.org</a>
+      </div>
+
+      <div class="contact-info-divider" aria-hidden="true"></div>
+
+      <div class="contact-info-column">
+        <h2>Legal Information</h2>
+        <p><strong>EIN:</strong> 41-5000983</p>
+        <p><strong>Tax Status:</strong> 501(c)(3) Public Charity</p>
+        <p><strong>Address:</strong> 711 Bolton Walk, Goleta, CA</p>
+      </div>
+    </article>
   </section>
 </BaseLayout>

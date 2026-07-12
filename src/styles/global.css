@@ -129,6 +129,33 @@ a {
   text-underline-offset: 5px;
 }
 
+@media (max-width: 1300px) {
+  .site-header {
+    justify-content: space-between;
+    gap: 28px;
+    padding: 34px clamp(22px, 4vw, 52px) 18px;
+  }
+
+  .brand {
+    position: static;
+    width: clamp(118px, 13vw, 150px);
+    transform: none;
+    flex: 0 0 auto;
+  }
+
+  .brand img {
+    width: 100%;
+  }
+
+  .nav {
+    justify-content: flex-end;
+    gap: clamp(18px, 3vw, 40px);
+    font-size: clamp(0.9rem, 1.4vw, 1.08rem);
+    line-height: 1.1;
+    transform: none;
+  }
+}
+
 .nav a:hover,
 .nav a.active,
 .footer-nav a:hover,
@@ -339,6 +366,7 @@ a {
   color: rgba(255, 255, 255, 0.95);
   font-size: clamp(1.3rem, 1.6vw, 21px);
   line-height: 1.35;
+  text-align: left;
 }
 
 .mission-copy p {
@@ -390,6 +418,11 @@ h1 {
   color: rgba(255, 255, 255, 0.95);
   font-size: clamp(1.3rem, 1.6vw, 21px);
   line-height: 1.35;
+  text-align: left;
+}
+
+.page-home .hero-subtitle {
+  text-align: center;
 }
 
 .hero--labs .hero-content {
@@ -398,6 +431,48 @@ h1 {
 
 .hero--labs .hero-subtitle {
   max-width: 1100px;
+}
+
+.hero-copy {
+  width: 95%;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(1.3rem, 1.6vw, 21px);
+  line-height: 1.35;
+  text-align: left;
+}
+
+.hero-copy p {
+  margin: 0 auto;
+}
+
+.hero-copy p + p {
+  margin-top: 1.35em;
+}
+
+.lab-hero-cards {
+  width: min(900px, 95%);
+  margin: clamp(38px, 6vh, 72px) auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 26px);
+}
+
+.lab-hero-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 82px;
+  padding: 18px 22px;
+  border: 0;
+  background: rgba(124, 149, 161, 0.86);
+  color: var(--white);
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  backdrop-filter: blur(2px);
 }
 
 .button {
@@ -514,6 +589,7 @@ h1 {
   color: rgba(255, 255, 255, 0.72);
   font-size: clamp(1.33rem, 1.75vw, 1.58rem);
   line-height: 1.35;
+  text-align: center;
 }
 
 .section-heading {
@@ -537,6 +613,7 @@ h1 {
   max-width: var(--content);
   color: rgba(12, 61, 80, 0.68);
   font-size: clamp(1.15rem, 2vw, 1.65rem);
+  text-align: left;
 }
 
 .news-card {
@@ -545,33 +622,39 @@ h1 {
     calc((100% - (var(--page-gutter) * 5)) * 1)
   );
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(340px, 0.42fr) 1fr;
-  gap: clamp(22px, 2.2vw, 32px);
-  padding: clamp(27px, 3vw, 45px) clamp(18px, 2vw, 30px);
+  overflow: hidden;
+  display: block;
+  padding: 0 0 clamp(40px, 4vw, 68px);
   background: var(--black);
   color: var(--white);
   border-radius: 16px;
 }
 
-.news-card img {
-  width: 100%;
-  height: 100%;
-  min-height: 430px;
-  align-self: center;
-  object-fit: cover;
-  background: var(--mist-light);
+.news-card-heading {
+  min-height: clamp(340px, 24vw, 430px);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(34px, 4vw, 58px);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.62) 100%),
+    var(--news-image) center / cover no-repeat;
 }
 
 .news-card h3 {
+  max-width: 1420px;
+  margin: 0;
   font-size: 77px;
   line-height: 1.08;
 }
 
 .news-card p {
-  max-width: 860px;
+  max-width: 1580px;
   font-size: 25px;
   line-height: 1.42;
+}
+
+.news-card-body {
+  padding: clamp(42px, 4vw, 72px) clamp(34px, 4vw, 58px) 0;
 }
 
 .support-actions {
@@ -1357,6 +1440,60 @@ h1 {
   gap: clamp(20px, 2vw, 40px);
 }
 
+.contact-info-section {
+  display: flex;
+  justify-content: center;
+  padding-top: clamp(86px, 9vw, 120px);
+  padding-bottom: clamp(86px, 9vw, 120px);
+  background: var(--mist);
+}
+
+.contact-info-card {
+  width: min(1180px, calc(100% - (var(--page-gutter) * 2)));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  gap: clamp(48px, 6vw, 104px);
+  align-items: stretch;
+  padding: clamp(42px, 4vw, 58px) clamp(44px, 5vw, 74px);
+  background: #e8e8e4;
+  color: var(--ink);
+}
+
+.contact-info-column {
+  min-width: 0;
+}
+
+.contact-info-column h2 {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: clamp(2.3rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.06;
+}
+
+.contact-info-column p {
+  max-width: 360px;
+  margin-bottom: 0;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 1.35vw, 1.28rem);
+  line-height: 1.1;
+}
+
+.contact-info-column a {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.contact-info-divider {
+  width: 1px;
+  min-height: 210px;
+  background: rgba(12, 61, 80, 0.62);
+}
+
 .contact-card {
   display: flex;
   flex-direction: column;
@@ -1505,11 +1642,11 @@ h1 {
 
   .brand {
     position: static;
-    width: 200px;
+    width: clamp(112px, 20vw, 150px);
   }
 
   .brand img {
-    width: 200px;
+    width: 100%;
   }
 
   .nav {
@@ -1575,6 +1712,18 @@ h1 {
     width: 100%;
     max-width: 100%;
     gap: 32px;
+  }
+
+  .contact-info-card {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .contact-info-divider {
+    width: 100%;
+    min-height: 1px;
+    height: 1px;
   }
 
   .people-grid--about {
@@ -1714,7 +1863,12 @@ h1 {
 
   .news-card {
     width: calc(100% - (var(--page-gutter) * 2));
-    padding: clamp(20px, 3vw, 27px);
+    padding: 0 0 clamp(28px, 6vw, 42px);
+  }
+
+  .news-card-heading {
+    min-height: clamp(240px, 58vw, 420px);
+    padding: clamp(24px, 6vw, 34px);
   }
 
   .news-card h3 {
@@ -1725,9 +1879,8 @@ h1 {
     font-size: 1rem;
   }
 
-  .news-card img {
-    height: clamp(260px, 58vw, 420px);
-    min-height: 0;
+  .news-card-body {
+    padding: clamp(28px, 6vw, 42px) clamp(24px, 6vw, 34px) 0;
   }
 
   .project-list p {
@@ -1739,7 +1892,8 @@ h1 {
   .cards-grid,
   .people-grid,
   .project-showcase,
-  .contact-grid {
+  .contact-grid,
+  .lab-hero-cards {
     grid-template-columns: 1fr;
   }
 
@@ -1751,6 +1905,19 @@ h1 {
 
   .contact-cards-section .contact-grid {
     width: 100%;
+  }
+
+  .contact-info-section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .contact-info-card {
+    padding: 32px 26px;
+  }
+
+  .contact-info-column h2 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
   }
 
   .about-people-section,

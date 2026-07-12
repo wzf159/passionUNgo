@@ -9,8 +9,7 @@ import { media } from "@/data/site";
   <Hero
     title="SENSE Institute"
     subtitle="Turning knowledge into action for a better society."
-    video={media.homeVideo}
-    poster={media.homePoster}
+    image={media.homePoster}
     variant="home"
     ctaLabel="Support Our Mission"
     ctaHref="/contact/"
@@ -23,10 +22,11 @@ import { media } from "@/data/site";
       align="center"
     />
 
-    <article class="news-card">
-      <img src={media.news} alt="Researchers working together in a meeting room" />
-      <div>
+    <article class="news-card" style={`--news-image: url(${media.news});`}>
+      <div class="news-card-heading">
         <h3>Partnering with PassionULab for Resilient Urban Futures</h3>
+      </div>
+      <div class="news-card-body">
         <p>We are excited to announce our collaboration with PassionULab, an interdisciplinary team dedicated to data-driven environmental and urban innovation.</p>
         <p>Together, we are developing accessible web-based tools that help urban practitioners better understand climate risks, evaluate mitigation strategies, and support more informed decision-making for resilient communities.</p>
         <p>This partnership reflects our shared commitment to leveraging technology, data, and collaborative innovation to advance public well-being and build more resilient urban futures.</p>
