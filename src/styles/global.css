@@ -250,9 +250,7 @@ a {
   background: rgba(13, 45, 51, 0.45);
 }
 
-.hero--home .hero-overlay,
-.hero--labs .hero-overlay,
-.hero--programs .hero-overlay {
+.hero--home .hero-overlay{
   background: linear-gradient(
     180deg,
     rgba(12,50,65,.22) 0%,
@@ -261,12 +259,22 @@ a {
   );
 }
 
+.hero--labs .hero-overlay,
+.hero--programs .hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(12, 50, 65, 0.15) 0%,
+    rgba(12, 50, 65, 0.10) 55%,
+    rgba(12, 50, 65, 0.18) 100%
+  );
+}
+
 .hero--mission .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(7, 36, 46, 0.3) 0%,
-    rgba(7, 36, 46, 0.42) 55%,
-    rgba(7, 36, 46, 0.52) 100%
+    rgba(12,50,65,.22) 0%,
+    rgba(12,50,65,.18) 55%,
+    rgba(12,50,65,.28) 100%
   );
 }
 
@@ -281,9 +289,9 @@ a {
 .page-contact .hero--insights .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(12,50,65,.22) 0%,
-    rgba(12,50,65,.18) 55%,
-    rgba(12,50,65,.28) 100%
+    rgba(12, 50, 65, 0.15) 0%,
+    rgba(12, 50, 65, 0.10) 55%,
+    rgba(12, 50, 65, 0.18) 100%
   );
 }
 
