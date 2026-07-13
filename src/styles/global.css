@@ -255,9 +255,9 @@ a {
 .hero--programs .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(7, 36, 46, 0.7) 0%,
-    rgba(7, 36, 46, 0.7) 55%,
-    rgba(7, 36, 46, 0.7) 100%
+    rgba(12,50,65,.22) 0%,
+    rgba(12,50,65,.18) 55%,
+    rgba(12,50,65,.28) 100%
   );
 }
 
@@ -281,9 +281,9 @@ a {
 .page-contact .hero--insights .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(7, 36, 46, 0.7) 0%,
-    rgba(7, 36, 46, 0.7) 60%,
-    rgba(7, 36, 46, 0.7) 100%
+    rgba(12,50,65,.22) 0%,
+    rgba(12,50,65,.18) 55%,
+    rgba(12,50,65,.28) 100%
   );
 }
 
