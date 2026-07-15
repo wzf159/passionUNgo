@@ -116,7 +116,7 @@ a {
 
 .footer-nav {
   gap: 26px;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .nav {
@@ -1587,7 +1587,7 @@ h1 {
 
 .site-footer {
   border-top: 1px solid var(--white);
-  padding: 74px var(--page-gutter) 58px;
+  padding: 30px var(--page-gutter);
   background: var(--green-gradient);
   color: var(--white);
 }
@@ -1598,9 +1598,9 @@ h1 {
 
 .footer-inner {
   display: grid;
-  grid-template-columns: minmax(250px, 0.7fr) 1fr;
-  align-items: center;
-  gap: 40px;
+  grid-template-columns: minmax(280px, 0.7fr) 1fr;
+  align-items: stretch;
+  gap: 24px;
   width: min(var(--content), 100%);
   margin: 0 auto;
 }
@@ -1608,28 +1608,33 @@ h1 {
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   padding-left: calc(70px - var(--page-gutter));
 }
 
 .footer-brand img {
-  width: 127px;
+  width: 96px;
 }
 
 .footer-brand strong {
-  font-size: 1.35rem;
-  
+  font-size: 1.1rem;
 }
 
 .footer-brand p {
-  margin: 10px 0 0;
+  margin: 4px 0 0;
   line-height: 1.35;
 }
 
+.footer-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .copyright {
-  margin: 69px 0 0;
-  text-align: center;
-  font-size: 1.25rem;
+  margin: 0;
+  text-align: left;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 980px) {
@@ -1682,12 +1687,24 @@ h1 {
 
   .footer-inner {
     grid-template-columns: 1fr;
+    gap: 18px;
     justify-items: center;
     text-align: center;
   }
 
   .footer-brand {
     padding-left: 0;
+  }
+
+  .footer-side {
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .footer-side .copyright {
+    text-align: center;
   }
 
   .directors-container {
@@ -1944,6 +1961,17 @@ h1 {
 
   .footer-brand strong {
     font-size: 1.1rem;
+  }
+
+  .footer-side {
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .footer-side .copyright {
+    text-align: center;
   }
 
   .copyright {
@@ -2258,11 +2286,7 @@ h1 {
   font-weight: 600;
   color: #366177;
   margin: clamp(8px, 1vw, 12px) 0 4px;
-  white-space: nowrap;
-  overflow: visible;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  overflow-wrap: break-word;
 }
 
 .research-role {

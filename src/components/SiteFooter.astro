@@ -19,15 +19,17 @@ const activePath = normalize(currentPath);
         <p>Systems for Environment &<br />Societal Intelligence Institute</p>
       </div>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      {
-        navItems.map((item) => (
-          <a class:list={{ active: normalize(item.href) === activePath }} href={item.href}>
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
+    <div class="footer-side">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        {
+          navItems.map((item) => (
+            <a class:list={{ active: normalize(item.href) === activePath }} href={item.href}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+      <p class="copyright">© 2026 SENSE Institute. All rights reserved.</p>
+    </div>
   </div>
-  <p class="copyright">© 2026 SENSE Institute. All rights reserved.</p>
 </footer>
