@@ -247,31 +247,39 @@ a {
 
 .hero-overlay {
   z-index: -1;
-  background: rgba(13, 45, 51, 0.8);
+  background: rgba(13, 45, 51, 0.45);
 }
 
-.hero--home .hero-overlay,
+.hero--home .hero-overlay{
+  background: linear-gradient(
+    180deg,
+    rgba(12,50,65,.22) 0%,
+    rgba(12,50,65,.18) 55%,
+    rgba(12,50,65,.28) 100%
+  );
+}
+
 .hero--labs .hero-overlay,
 .hero--programs .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(7, 36, 46, 0.7) 52%,
-    rgba(7, 36, 46, 0.7) 82%,
-    rgba(7, 36, 46, 0.7) 100%
+    rgba(12, 50, 65, 0.15) 0%,
+    rgba(12, 50, 65, 0.10) 55%,
+    rgba(12, 50, 65, 0.18) 100%
   );
 }
 
 .hero--mission .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(7, 36, 46, 0.3) 0%,
-    rgba(7, 36, 46, 0.42) 58%,
-    rgba(7, 36, 46, 0.52) 100%
+    rgba(12,50,65,.22) 0%,
+    rgba(12,50,65,.18) 55%,
+    rgba(12,50,65,.28) 100%
   );
 }
 
 .hero--insights .hero-overlay {
-  background: rgba(13, 45, 51, 0.28);
+  background: rgba(13, 45, 51, 0.22);
 }
 
 .page-contact .hero--insights {
@@ -281,9 +289,9 @@ a {
 .page-contact .hero--insights .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(7, 36, 46, 0.7) 52%,
-    rgba(7, 36, 46, 0.7) 82%,
-    rgba(7, 36, 46, 0.7) 100%
+    rgba(12, 50, 65, 0.15) 0%,
+    rgba(12, 50, 65, 0.10) 55%,
+    rgba(12, 50, 65, 0.18) 100%
   );
 }
 
@@ -452,11 +460,11 @@ h1 {
 }
 
 .lab-hero-cards {
-  width: min(900px, 95%);
+  width: min(1100px, 94%);
   margin: clamp(38px, 6vh, 72px) auto 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(18px, 2vw, 26px);
+  gap: clamp(18px, 2vw, 28px);
 }
 
 .lab-hero-card {
@@ -464,14 +472,15 @@ h1 {
   align-items: center;
   justify-content: center;
   min-height: 82px;
-  padding: 18px 22px;
+  padding: 18px 28px;
   border: 0;
   background: rgba(124, 149, 161, 0.86);
   color: var(--white);
-  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
+  white-space: nowrap;
   backdrop-filter: blur(2px);
 }
 
@@ -501,7 +510,7 @@ h1 {
   min-height: 52px;
   padding: 13px 30px;
   font-size: 1.08rem;
-  background: rgba(12, 61, 80, 0.92);
+  background: rgba(124, 149, 161, 0.92);
 }
 
 .button--mint {
