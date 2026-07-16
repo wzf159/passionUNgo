@@ -18,7 +18,7 @@ export const media = {
   insightsPoster: "/images/updated/insights-a-6.jpg",
   contactPoster: "/images/updated/contact-a-9.jpg",
   programsPoster: "/images/updated/program-a-5.jpg",
-  news: "/images/updated/home-b3.jpg",
+  news: "/images/updated/A-13-1.jpg",
   partnerLogo: "/images/partner-logo1.png",
   partnerLogo2: "/images/partner-logo2.jpg",
   advisor: "/images/advisor.jpg",
